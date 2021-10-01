@@ -1,0 +1,83 @@
+
+
+
+    <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+            {#{{ encore_entry_link_tags('app') }}#}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+             {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+ <body>
+
+
+    <!-- CONTENT -->
+    <section>
+      <div class="container d-flex flex-column">
+        <div class="row align-items-center justify-content-center gx-0 min-vh-100">
+          <div class="col-12 col-md-6 col-lg-4 py-8 py-md-11">
+
+            <!-- Heading -->
+            <h1 class="mb-0 fw-bold text-center">
+              S'inscrire
+            </h1>
+
+            <!-- Text -->
+            <p class="mb-6 text-center text-muted">
+              Inscription en quelques minutes
+            </p>
+
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.firstname) }}
+        {{ form_row(registrationForm.lastname) }}
+        {{ form_row(registrationForm.birthdate) }}
+        {{ form_row(registrationForm.adress) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn btn-lg btn-primary">Register</button>
+    {{ form_end(registrationForm) }}
+
+
+
+
+                        <!-- Text -->
+            <p class="mb-0 fs-sm text-center text-muted">
+              Vous avez déja un compte enregistré? <a href="login">Connexion</a>.
+            </p>
+
+
+
+          </div>
+          <div class="col-lg-7 offset-lg-1 align-self-stretch d-none d-lg-block data-aos="fade-left">
+
+            <!-- Image -->
+            <div class="h-100 w-cover bg-cover" style="background-image: url(./img/mediatheque.jpg);"></div>
+
+            <!-- Shape -->
+            <div class="shape shape-start shape-fluid-y text-white">
+              <svg viewBox="0 0 100 1544" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h100v386l-50 772v386H0V0z" fill="currentColor"/></svg>            </div>
+
+          </div>
+        </div> <!-- / .row -->
+      </div> <!-- / .container -->
+    </section>
+
+</body>
+</html>
