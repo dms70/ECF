@@ -14,3 +14,10 @@ php bin/console doctrine:schema:update --force
 composer require easycorp/easyadmin-bundle
 
 
+# git
+
+git checkout main
+
+git pull 
+
+
