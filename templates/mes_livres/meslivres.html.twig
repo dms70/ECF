@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MesLivresController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+    <!-- SEARCH -->
+    <section class="py-6">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+
+            <!-- Form -->
+            <form class="rounded shadow">
+              <div class="input-group input-group-lg">
+
+                <!-- Text -->
+                <span class="input-group-text border-0 pe-1">
+                  <i class="fe fe-search"></i>
+                </span>
+
+                <!-- Input -->
+                <input type="text" class="form-control border-0 px-1" aria-label="Recherche de Livres" placeholder="Recherche de Livres" value="">
+
+                <!-- Text -->
+                <span class="input-group-text border-0 py-0 ps-1 pe-3">
+
+                  <!-- Text -->
+                  <span class="h6 text-uppercase text-muted d-none d-md-block mb-0 me-5">
+                    1 resultat
+                  </span>
+
+                  <!-- Button -->
+                  <button type="submit" class="btn btn-sm btn-primary">
+                    Rechercher
+                  </button>
+
+                </span>
+
+              </div>
+            </form>
+
+          </div>
+        </div> <!-- / .row -->
+      </div>
+    </section>
+
+
+           
+                    <div class="col-6 col-md-6 d-flex">
+                      <div class="card mb-6 shadow-light-lg lift lift-lg">
+                 
+                      </div>
+                    </div>       
+
+                                        <div class="col-6 col-md-6 d-flex">
+                      <div class="card mb-6 shadow-light-lg lift lift-lg">
+                 
+                      </div>
+                    </div>       
+
+                                        <div class="col-6 col-md-6 d-flex">
+                      <div class="card mb-6 shadow-light-lg lift lift-lg">
+                 
+                      </div>
+                    </div>               
+
+
+   <!-- CONTENT -->
+    <section class="py-8 py-md-11 mt-n10 mt-md-n14">
+      <div class="container">
+        <div class="row" id="portfolio" data-isotope='{"layoutMode": "fitRows"}'>
+          <div class="col-12 col-md-4 product">
+    {% for Book in Books %}
+            <!-- Card -->
+            <a class="card card-flush mb-7" href="#!">
+
+              <!-- Image -->
+              <div class="card-zoom">
+                <img class="card-img-top rounded shadow-light-lg" src="./img/LinconnuedelaSeine.jpg" alt="...">
+              </div>
+
+              <!-- Footer -->
+              <div class="card-footer">
+
+            <!-- Preheading -->
+                <h6 class="text-uppercase mb-1 text-muted">Titre : {{ Book.title}}</h6>
+
+                <!-- Heading -->
+                <h4 class="mb-0  mb-1 text-muted">Desription :  {{Book.description}}</h4>
+
+                <h4 class="mb-0  mb-1 text-muted">Auteur : {{Book.author}}</h4>
+                
+              </div>
+
+            </a>
+
+          </div>
+          <div class="col-12 col-md-4 resources">
+           {% endfor %}
+       </div>
+        <!-- / .row -->
+      </div>
+      <!-- / .container -->
+    </section>
+
+
+{% endblock %}
