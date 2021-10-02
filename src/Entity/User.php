@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -61,6 +63,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $adress;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Booked::class, inversedBy="users")
+     */
+    private $bookeds;
+
+    public function __construct()
+    {
+        $this->bookeds = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -207,6 +219,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAdress(string $adress): self
     {
         $this->adress = $adress;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|booked[]
+     */
+    public function getBookeds(): Collection
+    {
+        return $this->bookeds;
+    }
+
+    public function addBooked(booked $booked): self
+    {
+        if (!$this->bookeds->contains($booked)) {
+            $this->bookeds[] = $booked;
+        }
+
+        return $this;
+    }
+
+    public function removeBooked(booked $booked): self
+    {
+        $this->bookeds->removeElement($booked);
 
         return $this;
     }

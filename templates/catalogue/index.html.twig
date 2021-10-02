@@ -8,13 +8,44 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <!-- SEARCH -->
+    <section class="py-6">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/apps/david/ECF/src/Controller/CatalogueController.php'|file_link(0) }}">src/Controller/CatalogueController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/apps/david/ECF/templates/catalogue/index.html.twig'|file_link(0) }}">templates/catalogue/index.html.twig</a></code></li>
-    </ul>
-</div>
+            <!-- Form -->
+            <form class="rounded shadow">
+              <div class="input-group input-group-lg">
+
+                <!-- Text -->
+                <span class="input-group-text border-0 pe-1">
+                  <i class="fe fe-search"></i>
+                </span>
+
+                <!-- Input -->
+                <input type="text" class="form-control border-0 px-1" aria-label="Recherche de Livres" placeholder="Recherche de Livres" value="">
+
+                <!-- Text -->
+                <span class="input-group-text border-0 py-0 ps-1 pe-3">
+
+                  <!-- Text -->
+                  <span class="h6 text-uppercase text-muted d-none d-md-block mb-0 me-5">
+                    1 resultat
+                  </span>
+
+                  <!-- Button -->
+                  <button type="submit" class="btn btn-sm btn-primary">
+                    Rechercher
+                  </button>
+
+                </span>
+
+              </div>
+            </form>
+
+          </div>
+        </div> <!-- / .row -->
+      </div>
+    </section>
 {% endblock %}
