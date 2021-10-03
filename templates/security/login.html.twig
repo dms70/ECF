@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,8 +11,16 @@
             {#{{ encore_entry_link_tags('app') }}#}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
+            <!-- JAVASCRIPT -->
+        {% block javascripts %}
+        {#{{ encore_entry_script_tags('app') }}#}
+        {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
 
-   <!-- CONTENT -->
+{% block body %}
+
+    <!-- CONTENT -->
     <section>
       <div class="container d-flex flex-column">
         <div class="row align-items-center justify-content-center gx-0 min-vh-100">
@@ -26,75 +33,74 @@
 
             <!-- Text -->
             <p class="mb-6 text-muted">
-              Administration du site internet
+              Administration du site internet.
             </p>
 
-            <form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+            <!-- Form -->
+              <form method="post">
 
-    {% if app.user %}
-        <div class="mb-3">
-          You are logged in as {{ app.user.firstname }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
+              {% if error is defined %}
+               {% if error %}
+              <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+              {% endif %}
 
-    <div class="checkbox mb-3">
-    <h1 class="h3 mb-3 font-weight-normal">Se connecter</h1>
+              {% if app.user %}
+              <div class="mb-3">
+              You are logged in as {{ app.user.firstname }}, <a href="{{ path('app_logout') }}">Logout</a>
+              </div>
+              {% endif %}
+              {% endif %}
 
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" required>
+             
 
-    <input type="hidden" name="_csrf_token"
+              <div class="checkbox mb-3">
+              <h1 class="h3 mb-3 font-weight-normal">Se connecter</h1>
+              <label for="inputEmail">Email</label>
+              <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+              <label for="inputPassword">Password</label>
+              <input type="password" name="password" id="inputPassword" class="form-control" required>
+              <input type="hidden" name="_csrf_token"value="{{ csrf_token('authenticate') }}">
+              </div>
+    
+              {#
+               Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+               See https://symfony.com/doc/current/security/remember_me.html
+              #}   
 
-           value="{{ csrf_token('authenticate') }}"
-    >
-    </div>
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
+              <div class="checkbox mb-3">
+              <label>
+              <input type="checkbox" name="_remember_me"> Remember me
+              </label>
+              </div> 
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
+              <button class="btn btn-lg btn-primary" type="submit">
+                Se connecter
+              </button>
+              </form>
 
-    <button class="btn btn-lg btn-primary" type="submit">
-       Se connecter
-    </button>
-    </form>
+              <!-- Text -->
+              <p class="mb-0 fs-sm text-muted">
+              Vous n'avez pas de compte enregistré? <a href="register">Enregister</a>.
+              </p>
 
-            <p class="mb-0 fs-sm text-center text-muted">
-            Vous n'avez pas de compte enregistré? <a href="register">Enregister</a>.
-            </p>
+              </div>
+              <div class="col-lg-7 offset-lg-1 align-self-stretch d-none d-lg-block">
 
-          </div>
-          <div class="col-lg-7 offset-lg-1 align-self-stretch d-none d-lg-block data-aos="fade-left">
+              <!-- Image -->
+              <div class="h-100 w-cover bg-cover" style="background-image: url(./img/mediatheque.jpg);"></div>
 
-            <!-- Image -->
-            <div class="h-100 w-cover bg-cover" style="background-image: url(./img/mediatheque.jpg);"></div>
-
-            <!-- Shape -->
-            <div class="shape shape-start shape-fluid-y text-white">
-              <svg viewBox="0 0 100 1544" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h100v386l-50 772v386H0V0z" fill="currentColor"/></svg>            </div>
+              <!-- Shape -->
+              <div class="shape shape-start shape-fluid-y text-white">
+              <svg viewBox="0 0 100 1544" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h100v386l-50 772v386H0V0z" fill="currentColor"/>
+              </svg>
+              </div>
 
           </div>
         </div> <!-- / .row -->
       </div> <!-- / .container -->
     </section>
+{% endblock %}
 
-</body>
+
+  </body>
 </html>
-
-
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-             {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
- <body>
