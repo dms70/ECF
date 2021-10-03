@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MesLivresController!{% endblock %}
-
+{% block title %}Hello CatalogueController!{% endblock %}
 {% block body %}
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
@@ -43,11 +42,32 @@
 
               </div>
             </form>
-
           </div>
         </div> <!-- / .row -->
       </div>
+                          <div class="col-6 col-md-6 d-flex">
+                      <div class="card mb-6 shadow-light-lg lift lift-lg">
+                 
+                      </div>
+                    </div>       
+
+                        <!-- Badges -->
+            <nav class="nav justify-content-center">
+              <a class="badge rounded-pill bg-secondary-soft active me-1 mb-1" href="#" data-bs-toggle="pill" data-filter="*" data-bs-target="#portfolio">
+                <span class="h6 text-uppercase">Romans</span>
+              </a>
+              <a class="badge rounded-pill bg-secondary-soft me-1 mb-1" href="#" data-bs-toggle="pill" data-filter=".product" data-bs-target="#portfolio">
+                <span class="h6 text-uppercase">Bandes dessinées</span>
+              </a>
+              <a class="badge rounded-pill bg-secondary-soft me-1 mb-1" href="#" data-bs-toggle="pill" data-filter=".ux" data-bs-target="#portfolio">
+                <span class="h6 text-uppercase">Albums pour enfants</span>
+              </a>
+              <a class="badge rounded-pill bg-secondary-soft me-1 mb-1" href="#" data-bs-toggle="pill" data-filter=".resources" data-bs-target="#portfolio">
+                <span class="h6 text-uppercase">Documentaires</span>
+              </a>
+            </nav>
     </section>
+
 
 
            
@@ -70,12 +90,14 @@
                     </div>               
 
 
+       
+
    <!-- CONTENT -->
     <section class="py-8 py-md-11 mt-n10 mt-md-n14">
       <div class="container">
         <div class="row" id="portfolio" data-isotope='{"layoutMode": "fitRows"}'>
           <div class="col-12 col-md-4 product">
-    {% for Booked in Booked %}
+    {% for Book in Books %}
             <!-- Card -->
             <a class="card card-flush mb-7" href="#!">
 

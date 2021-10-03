@@ -19,30 +19,6 @@ class RegistrationFormType extends AbstractType
     {
         $builder
 
-        ->add('roles', ChoiceType::class, array(
-            'attr'  =>  array('class' => 'form-control',
-            'style' => 'margin:5px 0;'),
-            'choices' => 
-            array
-            (
-                'ROLE_ADMIN' => array
-                (
-                    'Yes' => 'ROLE_ADMIN',
-                ),
-                'ROLE_HABITANT' => array
-                (
-                    'Yes' => 'ROLE_HABITANT'
-                ),
-                'ROLE_EMPLOYE' => array
-                (
-                    'Yes' => 'ROLE_EMPLOYE'
-                ),
-            ) 
-            ,
-            'multiple' => true,
-            'required' => true,
-            )
-        )
 
         ->add('isVerified', ChoiceType::class, array(
             'choices'  => array(
