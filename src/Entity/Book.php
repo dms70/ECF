@@ -53,9 +53,36 @@ class Book
     private $categories;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Booked::class, inversedBy="books")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="books")
      */
-    private $bookeds;
+    private $user;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Booked::class, cascade={"persist", "remove"})
+     */
+    private $Bookeds;
+
+    /**
+     * @ORM\Column(type="integer", length=15, unique=true )
+     */
+    private $isbn;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $bookeddate;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $reserved;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $borrow;
+
+
 
     public function getId(): ?int
     {
@@ -146,15 +173,77 @@ class Book
         return $this;
     }
 
-    public function getBookeds(): ?booked
+    public function getUser(): ?User
     {
-        return $this->bookeds;
+        return $this->user;
     }
 
-    public function setBookeds(?booked $bookeds): self
+    public function setUser(?User $user): self
     {
-        $this->bookeds = $bookeds;
+        $this->user = $user;
 
         return $this;
     }
+
+    public function getBookeds(): ?Booked
+    {
+        return $this->Bookeds;
+    }
+
+    public function setBookeds(?Booked $Bookeds): self
+    {
+        $this->Bookeds = $Bookeds;
+
+        return $this;
+    }
+
+    public function getIsbn(): ?int
+    {
+        return $this->isbn;
+    }
+
+    public function setIsbn(int $isbn): self
+    {
+        $this->isbn = $isbn;
+
+        return $this;
+    }
+
+    public function getBookeddate(): ?\DateTimeInterface
+    {
+        return $this->bookeddate;
+    }
+
+    public function setBookeddate(?\DateTimeInterface $bookeddate): self
+    {
+        $this->bookeddate = $bookeddate;
+
+        return $this;
+    }
+
+    public function getReserved(): ?bool
+    {
+        return $this->reserved;
+    }
+
+    public function setReserved(?bool $reserved): self
+    {
+        $this->reserved = $reserved;
+
+        return $this;
+    }
+
+    public function getBorrow(): ?bool
+    {
+        return $this->borrow;
+    }
+
+    public function setBorrow(?bool $borrow): self
+    {
+        $this->borrow = $borrow;
+
+        return $this;
+    }
+
+
 }

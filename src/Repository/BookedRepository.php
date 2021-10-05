@@ -19,6 +19,25 @@ class BookedRepository extends ServiceEntityRepository
         parent::__construct($registry, Booked::class);
     }
 
+    public function findUserwithquerybuilder(int $user_id): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT d, c
+            FROM App\Entity\Booked d
+            INNER JOIN d.id c
+            WHERE d. = :user_id'
+        )->setParameter('user_id', $user_id);
+
+        return $query->getResult();
+    }
+
+
+
+
+ 
+
     // /**
     //  * @return Booked[] Returns an array of Booked objects
     //  */

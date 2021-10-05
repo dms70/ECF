@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Book;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Migrations\Query\Query;
 
 /**
  * @method Book|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,6 +19,36 @@ class BookRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Book::class);
     }
+
+
+    public function findBookedwithquerybuilder(int $user_id): array
+    {
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT d, c
+            FROM App\Entity\Book d
+            INNER JOIN d.Bookeds c
+            WHERE d.user = :user_id'
+        )->setParameter('user_id', $user_id);
+
+        return $query->getResult();
+    }
+
+
+    public function findAllWithQB(int $user_id)
+    {
+        return $this->createQueryBuilder('e')
+            ->where('e.user = :user')
+            ->setParameter('user', $user_id)
+            ->getQuery()
+            ->getResult();
+    }
+
+ 
+
+
+
 
     // /**
     //  * @return Book[] Returns an array of Book objects

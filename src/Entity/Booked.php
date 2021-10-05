@@ -35,14 +35,17 @@ class Booked
     private $confirm;
 
     /**
-     * @ORM\OneToMany(targetEntity=Book::class, mappedBy="bookeds")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="Bookeds")
      */
-    private $books;
+    private $user;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="bookeds")
+     * @ORM\Column(type="integer", length=15, unique=true )
      */
-    private $users;
+    private $isbn;
+
+
+
 
     public function __construct()
     {
@@ -91,60 +94,29 @@ class Booked
         return $this;
     }
 
-    /**
-     * @return Collection|Book[]
-     */
-    public function getBooks(): Collection
+    public function getUser(): ?User
     {
-        return $this->books;
+        return $this->user;
     }
 
-    public function addBook(Book $book): self
+    public function setUser(?User $user): self
     {
-        if (!$this->books->contains($book)) {
-            $this->books[] = $book;
-            $book->setBookeds($this);
-        }
+        $this->user = $user;
 
         return $this;
     }
 
-    public function removeBook(Book $book): self
+    public function getIsbn(): ?int
     {
-        if ($this->books->removeElement($book)) {
-            // set the owning side to null (unless already changed)
-            if ($book->getBookeds() === $this) {
-                $book->setBookeds(null);
-            }
-        }
+        return $this->isbn;
+    }
+
+    public function setIsbn(int $isbn): self
+    {
+        $this->isbn = $isbn;
 
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
 
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->addBooked($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->removeElement($user)) {
-            $user->removeBooked($this);
-        }
-
-        return $this;
-    }
 }

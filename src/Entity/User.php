@@ -65,13 +65,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $adress;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Booked::class, inversedBy="users")
+     * @ORM\OneToMany(targetEntity=Book::class, mappedBy="user")
      */
-    private $bookeds;
+    private $books;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Booked::class, mappedBy="user")
+     */
+    private $Bookeds;
+
+
 
     public function __construct()
     {
         $this->bookeds = new ArrayCollection();
+        $this->books = new ArrayCollection();
+        $this->Bookeds = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -224,26 +233,64 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection|booked[]
+     * @return Collection|Book[]
      */
-    public function getBookeds(): Collection
+    public function getBooks(): Collection
     {
-        return $this->bookeds;
+        return $this->books;
     }
 
-    public function addBooked(booked $booked): self
+    public function addBook(Book $book): self
     {
-        if (!$this->bookeds->contains($booked)) {
-            $this->bookeds[] = $booked;
+        if (!$this->books->contains($book)) {
+            $this->books[] = $book;
+            $book->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeBooked(booked $booked): self
+    public function removeBook(Book $book): self
     {
-        $this->bookeds->removeElement($booked);
+        if ($this->books->removeElement($book)) {
+            // set the owning side to null (unless already changed)
+            if ($book->getUser() === $this) {
+                $book->setUser(null);
+            }
+        }
 
         return $this;
     }
+
+    /**
+     * @return Collection|Booked[]
+     */
+    public function getBookeds(): Collection
+    {
+        return $this->Bookeds;
+    }
+
+    public function addBooked(Booked $booked): self
+    {
+        if (!$this->Bookeds->contains($booked)) {
+            $this->Bookeds[] = $booked;
+            $booked->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooked(Booked $booked): self
+    {
+        if ($this->Bookeds->removeElement($booked)) {
+            // set the owning side to null (unless already changed)
+            if ($booked->getUser() === $this) {
+                $booked->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

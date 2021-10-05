@@ -95,8 +95,10 @@
    <!-- CONTENT -->
     <section class="py-8 py-md-11 mt-n10 mt-md-n14">
       <div class="container">
+      
         <div class="row" id="portfolio" data-isotope='{"layoutMode": "fitRows"}'>
           <div class="col-12 col-md-4 product">
+         
     {% for Book in Books %}
             <!-- Card -->
             <a class="card card-flush mb-7" href="#!">
@@ -106,21 +108,26 @@
                 <img class="card-img-top rounded shadow-light-lg" src={{Book.image}} alt="...">
               </div>
 
-                    {% if Book.copy == 1  %}
-                    <!-- Button -->
-                    <a href="#!" class="btn w-100 btn btn-success">
-                    Je réserve <i class="fe ms-3"></i>
-                    </a>
+                   {% if Book.reserved == 1  %}
 
-                    {% else %}
+                     <!-- Button -->
+                       <a href="#!" class="btn w-100 btn btn-warning">
+                         Réservé le :  <i class="fe ms-3"></i> {{Book.bookeddate|date('d-m-Y')}}
+                       </a>
+                       </a>
+                       {% endif %}
 
-                    <a href="#!" class="btn w-100 btn btn btn-danger">
-                    Déja réserve <i class="fe ms-3"></i>
-                    </a>
+                       {% if Book.borrow == 1  %}
+                        <!-- Button -->
+                       <a href="#!" class="btn w-100 btn btn-success">
+                         Emprunté le : <i class="fe ms-3"></i> {{Book.bookeddate|date('d-m-Y')}}
+                       </a>
+                    
 
-                    {% endif %}
-                     
+
+                       {% endif %}
                              
+                              
                     
 
               <!-- Footer -->

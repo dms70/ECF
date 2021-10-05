@@ -51,67 +51,86 @@
 
 
            
-                    <div class="col-6 col-md-6 d-flex">
-                      <div class="card mb-6 shadow-light-lg lift lift-lg">
-                 
-                      </div>
-                    </div>       
+ <div class="col-6 col-md-6 d-flex">
 
-                                        <div class="col-6 col-md-6 d-flex">
-                      <div class="card mb-6 shadow-light-lg lift lift-lg">
-                 
-                      </div>
-                    </div>       
+<div class="card mb-6 shadow-light-lg lift lift-lg">
 
-                                        <div class="col-6 col-md-6 d-flex">
-                      <div class="card mb-6 shadow-light-lg lift lift-lg">
-                 
-                      </div>
-                    </div>               
+</div>
+</div>       
+<div class="col-6 col-md-6 d-flex">
+<div class="card mb-6 shadow-light-lg lift lift-lg">
+</div>
+</div>       
+<div class="col-6 col-md-6 d-flex">
+<div class="card mb-6 shadow-light-lg lift lift-lg">
+</div>
+</div>               
 
 
    <!-- CONTENT -->
     <section class="py-8 py-md-11 mt-n10 mt-md-n14">
+     
       <div class="container">
+      {{ "now"|date("d-m-Y") }}
         <div class="row" id="portfolio" data-isotope='{"layoutMode": "fitRows"}'>
           <div class="col-12 col-md-4 product">
-    {% for Booked in Booked %}
-            <!-- Card -->
+                {% for Books in Books %}
+       
+<!-- Card -->
             <a class="card card-flush mb-7" href="#!">
 
               <!-- Image -->
               <div class="card-zoom">
-                <img class="card-img-top rounded shadow-light-lg" src={{Book.image}} alt="...">
+                <img class="card-img-top rounded shadow-light-lg" src={{Books.image}} alt="...">
               </div>
 
-                    {% if Book.copy == 1  %}
-                    <!-- Button -->
-                    <a href="#!" class="btn w-100 btn btn-success">
-                    Je réserve <i class="fe ms-3"></i>
-                    </a>
+                      {% if Books.reserved == 1  %}
+                        <!-- Button -->
+                       <a href="#!" class="btn w-100 btn btn-warning">
+                         Réservé le :  <i class="fe ms-3"></i> {{Books.bookeddate|date('d-m-Y')}}
+                       </a>
+                       </a>
+                       {% endif %}
 
-                    {% else %}
+                       {% if Books.borrow == 1  and  Books.bookeddate > date('+30days')  %}
 
-                    <a href="#!" class="btn w-100 btn btn btn-danger">
-                    Déja réserve <i class="fe ms-3"></i>
-                    </a>
+                        <!-- Button -->
+                       <a href="#!" class="btn w-100 btn btn-danger">
+                         DELAI EMPRUNT DEPASSE 
+                         Emprunté le : <i class="fe ms-3"></i> le {{Books.bookeddate|date('d-m-Y')}}
+                       </a>
+                      {% else %}
+                       
+                       <a href="#!" class="btn w-100 btn btn-success">
+                         Emprunté le : <i class="fe ms-3"></i> le {{Books.bookeddate|date('d-m-Y')}}
+                       </a>
 
-                    {% endif %}
-                     
-                             
-                    
+                       {% endif %}
+          
 
-              <!-- Footer -->
-              <div class="card-footer">
 
-            <!-- Preheading -->
-                <h6 class="text-uppercase mb-1 text-muted">Titre : {{ Book.title}}</h6>
+                        <!-- Footer -->
+                        <div class="card-footer">
 
-                <!-- Heading -->
-                <h4 class="mb-0  mb-1 text-muted">Desription :  {{Book.description}}</h4>
+                        <!-- Heading -->
+                        <p class="mb-0  mb-1 ">
+                           Auteur : {{Books.Author}}
+                        </p>
 
-                <h4 class="mb-0  mb-1 text-muted">Auteur : {{Book.author}}</h4>
-                
+                        <!-- Text -->
+                        <a class="mb-0  mb-1 ">
+                          Titre : {{Books.Title}}
+                        </a>
+
+                        <!-- Heading -->
+                        <p class="mb-0  mb-1 ">
+                           Description : {{Books.description}} 
+                        </p>
+                       
+
+                        <p class="mb-0 ">
+                          IBSN : {{Books.isbn}}  
+                        </p>
 
 
               </div>
@@ -121,11 +140,13 @@
           </div>
           <div class="col-12 col-md-4 resources">
            {% endfor %}
-       </div>
+          </div>
+        </div>
         <!-- / .row -->
       </div>
       <!-- / .container -->
     </section>
 
-
 {% endblock %}
+
+
