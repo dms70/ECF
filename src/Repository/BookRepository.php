@@ -45,6 +45,15 @@ class BookRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findAllWithISBN(int $isbn)
+    {
+        return $this->createQueryBuilder('e')
+            ->where('e.isbn = :isbn')
+            ->setParameter('isbn', $isbn)
+            ->getQuery()
+            ->getResult();
+    }
+
  
 
 

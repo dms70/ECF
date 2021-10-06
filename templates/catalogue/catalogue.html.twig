@@ -108,23 +108,25 @@
                 <img class="card-img-top rounded shadow-light-lg" src={{Book.image}} alt="...">
               </div>
 
-                   {% if Book.reserved == 1  %}
-
-                     <!-- Button -->
+                       {% if Book.reserved == 1  %}
+                       <!-- Button -->
                        <a href="#!" class="btn w-100 btn btn-warning">
                          Réservé le :  <i class="fe ms-3"></i> {{Book.bookeddate|date('d-m-Y')}}
                        </a>
                        </a>
                        {% endif %}
 
-                       {% if Book.borrow == 1  %}
+                       {% if Book.borrowed == 1  %}
                         <!-- Button -->
-                       <a href="#!" class="btn w-100 btn btn-success">
+                       <a href="#!" class="btn w-100 btn btn-danger">
                          Emprunté le : <i class="fe ms-3"></i> {{Book.bookeddate|date('d-m-Y')}}
                        </a>
+                        {% endif %}
                     
-
-
+                       {% if Book.reserved == 0 and Book.borrowed == 0 %}
+                       <!-- Button -->
+                         <a  href="{{ path ('addreservation', {'isbn' : Book.isbn})}}" class="btn w-100 btn btn-success" >DISPONIBLE
+                       </a>
                        {% endif %}
                              
                               

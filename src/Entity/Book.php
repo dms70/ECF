@@ -80,7 +80,7 @@ class Book
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $borrow;
+    private $borrowed;
 
 
 
@@ -233,14 +233,14 @@ class Book
         return $this;
     }
 
-    public function getBorrow(): ?bool
+    public function getBorrowed(): ?bool
     {
-        return $this->borrow;
+        return $this->borrowed;
     }
 
-    public function setBorrow(?bool $borrow): self
+    public function setBorrowed(?bool $borrowed): self
     {
-        $this->borrow = $borrow;
+        $this->borrowed = $borrowed;
 
         return $this;
     }
