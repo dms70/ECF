@@ -70,15 +70,15 @@
 
               <!-- Image -->
               <div class="card-zoom">
-                <img class="card-img-top rounded shadow-light-lg" src={{Books.image}} alt="...">
+                <img class="card-img-top rounded shadow-light-lg" src="{{ vich_uploader_asset(Books, 'imageFile') }}" alt="...">
               </div>
 
                       {% if Books.reserved == 1  %}
-                        <!-- Button -->
-                       <a href="#!" class="btn w-100 btn btn-warning">
-                        Réservé le :  <i class="fe ms-3"></i> {{Books.bookeddate|date('d-m-Y')}} ;
-                       </a>
-                       </a>
+                        <!-- Badges -->
+                        <span class="badge badge-lg btn-warning text-dark">      
+                        Réservé le :  {{Books.bookeddate|date('d-m-Y')}}
+                       </span>
+
                        {% endif %}
 
                        {% if Books.borrowed == 1 %}

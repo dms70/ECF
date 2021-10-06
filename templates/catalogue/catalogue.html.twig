@@ -7,6 +7,7 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
+
     <!-- SEARCH -->
     <section class="py-6">
       <div class="container">
@@ -101,34 +102,46 @@
          
     {% for Book in Books %}
             <!-- Card -->
-            <a class="card card-flush mb-7" href="#!">
+            <a class="card card-flush mb-7" href="#!"  />
 
               <!-- Image -->
               <div class="card-zoom">
-                <img class="card-img-top rounded shadow-light-lg" src={{Book.image}} alt="...">
+                <img class="card-img-top rounded shadow-light-lg"  src="{{ vich_uploader_asset(Book, 'imageFile') }} " alt="...">
               </div>
 
                        {% if Book.reserved == 1  %}
-                       <!-- Button -->
-                       <a href="#!" class="btn w-100 btn btn-warning">
-                         Réservé le :  <i class="fe ms-3"></i> {{Book.bookeddate|date('d-m-Y')}}
-                       </a>
-                       </a>
+                        <!-- Badges -->
+                       <span class="badge badge-lg btn-warning text-dark">      
+                       Réservé le : {{Book.bookeddate|date('d-m-Y')}}
+                       </span>
                        {% endif %}
 
                        {% if Book.borrowed == 1  %}
-                        <!-- Button -->
-                       <a href="#!" class="btn w-100 btn btn-danger">
-                         Emprunté le : <i class="fe ms-3"></i> {{Book.bookeddate|date('d-m-Y')}}
-                       </a>
+                       <!-- Badges -->
+                       <span class="badge badge-lg btn-danger text-dark">      
+                       Emprunté le :  {{Book.bookeddate|date('d-m-Y')}}
+                       </span>
                         {% endif %}
                     
                        {% if Book.reserved == 0 and Book.borrowed == 0 %}
+                       <!-- Badges -->
+                       <span class="badge badge-lg btn-success text-dark" >      
+                       Disponible à la réservation 
+                       </span>
                        <!-- Button -->
-                         <a  href="{{ path ('addreservation', {'isbn' : Book.isbn})}}" class="btn w-100 btn btn-success" >DISPONIBLE
-                       </a>
+                         <a  href="{{ path ('addreservation', {'isbn' : Book.isbn})}}" class="btn w-100 btn btn-success" >
+                         JE RESERVE
+                        </a>
+
+
+
+
                        {% endif %}
-                             
+
+                       <!-- Modal -->
+
+
+
                               
                     
 
@@ -151,7 +164,11 @@
 
           </div>
           <div class="col-12 col-md-4 resources">
+          
            {% endfor %}
+
+
+
        </div>
         <!-- / .row -->
       </div>
@@ -159,4 +176,16 @@
     </section>
 
 
+<script>
+var myModal = document.getElementById('myModal')
+var myInput = document.getElementById('myInput')
+
+myModal.addEventListener('shown.bs.modal', function () {
+  myInput.focus()
+})
+</script>
+
+
+
 {% endblock %}
+

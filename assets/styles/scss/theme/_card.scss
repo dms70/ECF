@@ -5,6 +5,12 @@
 
 // Card resets
 
+
+.card-img-top {
+  max-height: 40vh; /*not want to take all vertical space*/
+  object-fit: contain;/*show all image, autosized, no cut, in available space*/
+}
+
 .card {
   position: relative;
   width: 100%;

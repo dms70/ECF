@@ -33,14 +33,17 @@
 
               <!-- Image -->
               <div class="card-zoom">
-                <img class="card-img-top rounded shadow-light-lg" src={{Books.image}} alt="...">
+                <img class="card-img-top rounded shadow-light-lg" src="{{ vich_uploader_asset(Books, 'imageFile') }}" alt="...">
               </div>
 
-                      {% if Books.borrowed == 1  %}
-                        <!-- Button -->
-                       <a href="" class="btn w-100 btn btn-info">
+                       {% if Books.borrowed == 1  %}
+
+                       <span class="badge badge-lg bg-primary">
+                       
                         Emprunté le :  <i class="fe ms-3"></i> {{Books.bookeddate|date('d-m-Y')}}
-                       </a>
+
+                       </span>
+
                        <a href="{{ path ('removeborrowed', {'isbn' : Books.isbn})}}" class="btn w-100 btn btn-danger">
                         Validation du retour  <i class="fe ms-3"></i>
                        </a>

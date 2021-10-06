@@ -4,10 +4,14 @@ namespace App\Entity;
 
 use App\Repository\BookRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass=BookRepository::class)
+ * @Vich\Uploadable
  */
+
 class Book
 {
     /**
@@ -22,11 +26,17 @@ class Book
      */
     private $title;
 
+
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     private $image;
 
+    /**
+     * @Vich\UploadableField(mapping="product_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
     /**
      * @ORM\Column(type="date", nullable=true)
      */
@@ -111,6 +121,27 @@ class Book
         $this->image = $image;
 
         return $this;
+    }
+
+
+
+    public function setImageFile(File $file = null)
+    {
+        $this->imageFile = $file;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($file) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->datemakeup = new \DateTime('now');
+        }
+    }
+
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
     }
 
     public function getPublishdate(): ?\DateTimeInterface
