@@ -95,6 +95,30 @@ class BookManager extends AbstractController
     }
 
 
+    public function confirmreserved(int $isbn): void
+    {
+
+        $user = $this->getUser();
+        $userId = $user->getId();
+
+        dump($userId);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $book = $entityManager->getRepository(Book::class)->findOneByisbn($isbn);
+        dump($book);
+        $book->setReserved(false);
+        $book->setBorrowed(true);
+        $date = new \DateTime('@'.strtotime('now'));
+        $book->setBookeddate ($date);
+        $entityManager->persist($book);
+    
+        $entityManager->flush();
+        dump($isbn);
+
+    }
+
+
+
 
 
 

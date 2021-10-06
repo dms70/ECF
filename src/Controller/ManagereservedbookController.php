@@ -32,6 +32,15 @@ public function addreservation(BookManager $BookManager, int $isbn)
         return $this->redirectToRoute('mes_livres');
 }
 
+#[Route('/confirmreserved/{isbn}', name: 'confirmreserved')]
+public function confirmreserved(BookManager $BookManager, int $isbn)
+{   
+        dump($isbn);
+        $BookManager->confirmreserved($isbn);
+        
+        return $this->redirectToRoute('mes_livres');
+}
+
 
 #[Route('/managereservedbook', name: 'managereservedbook')]
 

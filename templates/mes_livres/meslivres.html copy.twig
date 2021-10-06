@@ -81,10 +81,11 @@
                        </a>
                        {% endif %}
 
-                       {% if Books.borrowed == 1 %}
+                       {% if Books.borrowed == 1  and  Books.bookeddate > date('+30days')  %}
 
                         <!-- Button -->
-                       <a href="#!" class="btn w-100 btn btn-info">
+                       <a href="#!" class="btn w-100 btn btn-danger">
+                         DELAI EMPRUNT DEPASSE 
                          Emprunté le : <i class="fe ms-3"></i> le {{Books.bookeddate|date('d-m-Y')}}
                        </a>
 

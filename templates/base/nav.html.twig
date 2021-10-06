@@ -61,7 +61,6 @@
                         Romans
                       </h6>
                     </div>
-    
                   </a>
 
                   <a class="list-group-item" href="#">
@@ -129,15 +128,63 @@
                 </div>
               </div>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link " id="navbarLandings" 
-              href="{{ path('returnerd_book') }}" aria-haspopup="true" aria-expanded="false">
-                Retour
+
+
+
+
+
+
+           <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDocumentation"  href="" aria-haspopup="true" aria-expanded="false">
+                Gestion
               </a>
-              <div class="dropdown-menu dropdown-menu-xl p-0" aria-labelledby="navbarLandings">
-                <div class="row gx-0">
-                  <div class="col-12 col-lg-6">
+              <div class="dropdown-menu dropdown-menu-md" aria-labelledby="navbarDocumentation">
+                <div class="list-group list-group-flush">
+                  <a class="list-group-item" href="{{ path('returnerd_book') }}">
+    
+                    
+                    <!-- Icon -->
+                    <div class="icon icon-sm text-primary">
+                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <img src="./img/RetourLivre.png" width="40" height="40">   
+                      </svg>                
+                    </div>
+    
+                    <!-- Content -->
+                    <div class="ms-4" href="{{ path('returnerd_book') }}">
+                      <!-- Heading -->
+                      <h6 class="fw-bold text-uppercase text-primary mb-0" >
+                        Retour des Livres
+                      </h6>
+                    </div>
+                    </a>
+
+                  <a class="list-group-item" href="{{ path('validationbook') }}">
+
+                    <!-- Icon -->
+                    <div class="icon icon-sm text-primary">
+                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <img src="./img/EmprunterLivre.png" width="40" height="40">   
+                      </svg>                
+                    </div>
+    
+                    <!-- Content -->
+                    <div class="ms-4">
+                      <!-- Heading -->
+                      <h6 class="fw-bold text-uppercase text-primary mb-0" >
+                        Validation des Emprunts
+                      </h6>
+                    </div>
+
+                 </a>
+                </div>
+              </div>
             </li>
+
+
+
+
+
           </ul>
     
           <!-- Button -->

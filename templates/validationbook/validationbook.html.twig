@@ -1,9 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ReturnerdBookController!{% endblock %}
-
-
-
+{% block title %}Hello ValidationReserverdBookController!{% endblock %}
 
 
 {% block body %}
@@ -17,7 +14,7 @@
 
                     {{ form_start(form) }}
                         {{ form_widget(form) }}
-                          <button type="submit" class="btn btn-lg btn-primary">Rechercher par ISBN</button>
+                          <button type="submit" class="btn btn-lg btn-primary">Rechercher par ID utilisateur</button>
                     {{ form_end(form) }}
 
 
@@ -27,48 +24,21 @@
        <div class="row" id="portfolio" data-isotope='{"layoutMode": "fitRows"}'>
           <div class="col-12 col-md-4 product">
                {% for Books in Books %}
-       
-            <!-- Card -->
-            <a class="card card-flush mb-7" href="#!">
+                 {% if Books.reserved == 1 %} 
+                         <!-- Card -->
+                         <a class="card card-flush mb-7" href="#!">
 
-              <!-- Image -->
-              <div class="card-zoom">
-                <img class="card-img-top rounded shadow-light-lg" src={{Books.image}} alt="...">
-              </div>
-
-                      {% if Books.borrowed == 1  %}
-                        <!-- Button -->
-                       <a href="" class="btn w-100 btn btn-info">
-                        Emprunté le :  <i class="fe ms-3"></i> {{Books.bookeddate|date('d-m-Y')}}
-                       </a>
-                       <a href="{{ path ('removeborrowed', {'isbn' : Books.isbn})}}" class="btn w-100 btn btn-danger">
-                        Validation du retour  <i class="fe ms-3"></i>
-                       </a>
-                       </a>
-                       {% endif %}
-
-                       {% if Books.borrowed == 1  and  Books.bookeddate > date('+30days')  %}
-
-                        <!-- Button -->
-                       <a href="#!" class="btn w-100 btn btn-danger">
-                         DELAI EMPRUNT DEPASSE 
-                         Emprunté le : <i class="fe ms-3"></i> le {{Books.bookeddate|date('d-m-Y')}}
-                       </a>
-
-
-                       {% endif %}
-          
-                       {% if Books.reserved == 1 %} 
+                          <!-- Image -->
+                        <div class="card-zoom">
+                        <img class="card-img-top rounded shadow-light-lg" src={{Books.image}} alt="...">
+                        </div>
+        
+                      
                         <a  href="{{ path ('removereservation', {'isbn' : Books.isbn})}}" class="btn w-100 btn-danger text-dark" >Annulation
-                 
                         </a>
-                       {% endif %}
-
-                       {% if Books.reserved == 0 and Books.borrowed == 0 %}
-                       <!-- Button -->
-                         <a  href="" class="btn w-100 btn btn-success" >DISPONIBLE
-                       </a>
-                       {% endif %}
+                        <a  href="{{ path ('confirmreserved',  {'isbn' : Books.isbn})}}" class="btn w-100 btn btn-info text-dark" >Confirmation
+                        </a>
+                       
 
                         <!-- Footer -->
                         <div class="card-footer">
@@ -92,7 +62,7 @@
                         <p class="mb-0 ">
                           IBSN : {{Books.isbn}}  
                         </p>
-
+                        {% endif %}
 
               </div>
 
