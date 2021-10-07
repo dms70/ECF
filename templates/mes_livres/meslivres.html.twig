@@ -82,7 +82,9 @@
                        {% endif %}
 
                        {% if Books.borrowed == 1 %}
-
+                       <span class="badge badge-lg btn-warning text-dark">      
+                        Emprunté le :  {{Books.bookeddate|date('d-m-Y')}}
+                       </span>
                         <!-- Button -->
                        <a href="#!" class="btn w-100 btn btn-info">
                          Emprunté le : <i class="fe ms-3"></i> le {{Books.bookeddate|date('d-m-Y')}}
