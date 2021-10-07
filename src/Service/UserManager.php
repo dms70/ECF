@@ -31,4 +31,22 @@ class UserManager extends AbstractController
     }
 
 
+    public function searchisverified($data)
+    {
+
+        $email = $data['Recherche'];
+        dump($data);
+        $entityManager = $this->getDoctrine()->getManager();
+        $user = $entityManager->getRepository(User::class)->findOneByemail($email);
+        dump($email);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $entityManager->getRepository(User::class);
+        $userbyEmail = $repository->findOneByemail(email : $email);
+  
+        return $email;
+    }
+
+
+
 }

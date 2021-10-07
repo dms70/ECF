@@ -12,6 +12,23 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -27,11 +44,42 @@ class RegistrationFormType extends AbstractType
             // *this line is important*
             //'isVerified' => true,
        // ))
-            ->add('firstname')
-            ->add('lastname')
-            ->add('birthdate')
-            ->add('adress')
-            ->add('email')
+    
+          
+                ->add(
+                'firstname',
+                TextType::class,
+                [
+                'label' => 'Prénom'
+                ],
+                )
+   
+                ->add(
+                'lastname',
+                TextType::class,
+                [
+                'label' => 'Nom'
+                ],
+                )
+                ->add(
+                'birthdate',
+                DateType::class,
+                [
+                    'label' => 'Date de Naissance'
+                ],
+            
+                )
+
+                ->add(
+                    'adress',
+                    TextType::class,
+                    [
+                        'label' => 'Adresse postale'
+                    ],
+                    )
+                ->add('email')
+
+            
             
             //*->add('agreeTerms', CheckboxType::class, [
               //  'mapped' => false,
@@ -54,7 +102,7 @@ class RegistrationFormType extends AbstractType
                         'min' => 8,
                         'minMessage' => 'Your password should be at least {{ limit }} characters',
                         // max length allowed by Symfony for security reasons
-                        'max' => 4096,
+                        'max' => 25,
                     ]),
                 ],
             ])
