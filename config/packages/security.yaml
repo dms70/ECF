@@ -43,5 +43,6 @@ security:
         - { path: ^/meslivres, roles: ROLE_HABITANT}
         - { path: ^/catalogue, roles: ROLE_HABITANT}
         - { path: ^/admin, roles: ROLE_EMPLOYE }
+        - { path: ^/superadmin, roles: ROLE_ADMIN }
         #- { path: ^/returnerdbook, roles: ROLE_EMPLOYE }
         # - { path: ^/profile, roles: ROLE_USER }

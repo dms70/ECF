@@ -15,6 +15,7 @@ class CatalogueController extends AbstractController
     #[Route('/catalogue', name: 'catalogue')]
     public function catalogue(PaginatorInterface $paginator, request $request,BookRepository $BookRepository): Response
     {
+       
 
         $data =  $BookRepository->findall();
 

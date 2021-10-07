@@ -20,13 +20,13 @@ class RegistrationFormType extends AbstractType
         $builder
 
 
-        ->add('isVerified', ChoiceType::class, array(
-            'choices'  => array(
-                'No' => false,
-            ),
+        //->add('isVerified', ChoiceType::class, array(
+           //// 'choices'  => array(
+         //       'No' => false,
+        //    ),
             // *this line is important*
             //'isVerified' => true,
-        ))
+       // ))
             ->add('firstname')
             ->add('lastname')
             ->add('birthdate')

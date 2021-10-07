@@ -17,7 +17,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\SlugField;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
-class UserCrudController extends AbstractCrudController
+class EmployeCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
@@ -30,7 +30,6 @@ class UserCrudController extends AbstractCrudController
             
             TextField::new('email', null),
             ArrayField::new('roles', null),
-            TextField::new('password', null),
             BooleanField::new('is_verified', null),
             TextField::new('firstname'),
             TextField::new('lastname'),
@@ -41,6 +40,6 @@ class UserCrudController extends AbstractCrudController
             
         ];
     }
+ 
 }
-
 

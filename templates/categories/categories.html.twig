@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Hello CatagoriesController!{% endblock %}
 
-{% block title %}Hello CatalogueController!{% endblock %}
 {% block body %}
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
@@ -25,7 +25,7 @@
                 </span>
 
                 <!-- Input -->
-                <input type="text" class="form-control border-0 px-1"  aria-label="Recherche de Livres" placeholder="Recherche de Livres" value="">
+                <input type="text" class="form-control border-0 px-1" aria-label="Recherche de Livres" placeholder="Recherche de Livres" value="">
 
                 <!-- Text -->
                 <span class="input-group-text border-0 py-0 ps-1 pe-3">
@@ -47,22 +47,22 @@
                  
                       </div>
                      </div>       
-
                         <!-- Badges -->
             <nav class="nav justify-content-center">
-            <a class="badge rounded-pill bg-secondary-soft me-1 mb-1" href="{{ path('catalogue') }}" >
+                <a class="badge rounded-pill bg-secondary-soft me-1 mb-1" href="{{ path('catalogue') }}" >
                 <span class="h6 text-uppercase">Catalogue</span>
               </a>
               <a class="badge rounded-pill bg-secondary-soft me-1 mb-1" href="{{ path('categoriesRomans') }}" >
                 <span class="h6 text-uppercase">Romans</span>
               </a>
+ 
               <a class="badge rounded-pill bg-secondary-soft me-1 mb-1" href="{{ path('categoriesBD') }}" >
                 <span class="h6 text-uppercase">Bandes dessinées</span>
               </a>
               <a class="badge rounded-pill bg-secondary-soft me-1 mb-1" href="{{ path('categoriesEnfants') }}" >
                 <span class="h6 text-uppercase">Albums pour enfants</span>
               </a>
-              <a class="badge rounded-pill bg-secondary-soft me-1 mb-1"href="{{ path('categoriesDocumentaires') }}" >
+              <a class="badge rounded-pill bg-secondary-soft me-1 mb-1"href="{{ path('categoriesDocumentaires') }}">
                 <span class="h6 text-uppercase">Documentaires</span>
               </a>
             </nav>

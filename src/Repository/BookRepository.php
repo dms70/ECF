@@ -63,6 +63,16 @@ class BookRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findAllwithcategories(int $categories)
+    {
+        return $this->createQueryBuilder('e')
+            ->where('e.categories = :categories')
+            ->setParameter('categories', $categories)
+            ->getQuery()
+            ->getResult();
+    }
+
+
  
 
 
