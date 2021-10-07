@@ -6,15 +6,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\BookRepository;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
+
 
 class CatalogueController extends AbstractController
 {
     #[Route('/catalogue', name: 'catalogue')]
-    public function catalogue(BookRepository $BookRepository): Response
+    public function catalogue(PaginatorInterface $paginator, request $request,BookRepository $BookRepository): Response
     {
+
+        $data =  $BookRepository->findall();
+
+        $Books = $paginator->paginate(
+            $data, $request->query->getInt('page',1),6    
+        );
         {
             return $this->render('catalogue/catalogue.html.twig', [
-                'Books' => $BookRepository->findall(),
+                'Books' => $Books,
             ]);
         }
     }
