@@ -46,5 +46,16 @@ security:
         - { path: ^/catalogue, roles: ROLE_HABITANT}
         - { path: ^/admin, roles: ROLE_EMPLOYE }
         - { path: ^/superadmin, roles: ROLE_ADMIN }
+        - { path: ^/categoriesRomans, roles: ROLE_HABITANT }
+        - { path: ^/categoriesEnfants, roles: ROLE_HABITANT }
+        - { path: ^/categoriesBD, roles: ROLE_HABITANT }
+        - { path: ^/categoriesDocumentaires, roles: ROLE_HABITANT }
+        - { path: ^/returnerdbook, roles: ROLE_EMPLOYE }
+        - { path: ^/validationbook, roles: ROLE_EMPLOYE }
+        
+
+        
+
+        
         #- { path: ^/returnerdbook, roles: ROLE_EMPLOYE }
         # - { path: ^/profile, roles: ROLE_USER }
