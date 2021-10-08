@@ -53,6 +53,16 @@ class BookRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+   
+    public function findAllBorrowed()
+    {
+        return $this->createQueryBuilder('b')
+            ->where('b.borrowed = :borrowed')
+            ->setParameter('borrowed', true)
+            ->orderBy('b.bookeddate', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 
     public function findAllWithuser(int $user)
     {

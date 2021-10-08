@@ -16,7 +16,7 @@ class ManageBorrowedBookController extends AbstractController
 
     public function removeborrowedbook(BookManager $BookManager, int $isbn)
     {   
-            dump($isbn);
+            //dump($isbn);
             $BookManager->removeborrowed($isbn);
             
             return $this->redirectToRoute('returnerd_book');

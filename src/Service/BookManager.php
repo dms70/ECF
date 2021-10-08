@@ -34,7 +34,6 @@ class BookManager extends AbstractController
 
 
 
-
     public function removereservation(int $isbn): void
     {
 

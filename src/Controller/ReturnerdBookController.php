@@ -34,11 +34,20 @@ class ReturnerdBookController extends AbstractController
 
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository(Book::class);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $entityManager->getRepository(Book::class);
+        $bookbyUserMethode = $repository->findAllBorrowed();
+
        
         return $this->render('returnerd_book/index.html.twig', [
+            'AllBooks' =>$bookbyUserMethode = $repository->findAllBorrowed(),
             'Books' =>$bookbyIsbn = $repository->findAllWithISBN(isbn : $isbn),
             'controller_name' => 'ReturnerdBookController','form' => $form->createView()
         ]);
+
+
+
     }
 
 
