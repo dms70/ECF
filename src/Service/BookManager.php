@@ -1,6 +1,7 @@
 <?php
 namespace App\Service;
 use App\Entity\Book;
+use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,7 +37,11 @@ class BookManager extends AbstractController
 
     public function removereservation(int $isbn): void
     {
-        dump($isbn);
+
+        $user = $this->getUser();
+        $userId = $user->getId();
+
+        //dump($isbn);
         $entityManager = $this->getDoctrine()->getManager();
         $book = $entityManager->getRepository(Book::class)->findOneByisbn($isbn);
         dump($book);
@@ -45,28 +50,46 @@ class BookManager extends AbstractController
         $book->setBookeds(NULL);
         $book->setUser(NULL);
 
+        $Bookborrowed= $user ->getBookborrowed();
+        $Bookborrowed = --$Bookborrowed;
+        $user->setBookborrowed($Bookborrowed);
+        
         $entityManager->persist($book);
-    
+        $entityManager->persist($user);
+
         $entityManager->flush();
-        dump($isbn);
+        //dump($isbn);
 
     }
 
     public function removeborrowed(int $isbn): void
     {
-        dump($isbn);
+        //dump($isbn);        
+
         $entityManager = $this->getDoctrine()->getManager();
         $book = $entityManager->getRepository(Book::class)->findOneByisbn($isbn);
+
         dump($book);
         $book->setBorrowed(false);
         $book->setBookeddate(NULL);
         $book->setBookeds(NULL);
-        $book->setUser(NULL);
 
+
+        $id = $book->GetUser();
+        $User = $entityManager->getRepository(User::class)->findOneByid($id);
+        
+        $user = $this->getUser();
+        $Bookborrowed= $user ->getBookborrowed();
+        $Bookborrowed = --$Bookborrowed;
+        $user->setBookborrowed($Bookborrowed);
+
+        $book->setUser(NULL);
+        $user = $this->getUser();
+        
         $entityManager->persist($book);
     
         $entityManager->flush();
-        dump($isbn);
+        //dump($isbn);
 
     }
 
@@ -80,14 +103,22 @@ class BookManager extends AbstractController
 
         $entityManager = $this->getDoctrine()->getManager();
         $book = $entityManager->getRepository(Book::class)->findOneByisbn($isbn);
-        dump($book);
+        //dump($book);
         $book->setReserved(true);
         $date = new \DateTime('@'.strtotime('now'));
         $book->setBookeddate ($date);
         //$book->setBookeds(NULL);
         $book->setUser( $user);
 
+
+        $Bookborrowed= $user ->getBookborrowed();
+        $Bookborrowed = ++$Bookborrowed;
+        $user->setBookborrowed($Bookborrowed);
+            
+
+
         $entityManager->persist($book);
+        $entityManager->persist($user);
     
         $entityManager->flush();
         dump($isbn);

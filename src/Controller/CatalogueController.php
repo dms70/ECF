@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\BookRepository;
+use App\Repository\UserRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -16,6 +17,7 @@ class CatalogueController extends AbstractController
     public function catalogue(PaginatorInterface $paginator, request $request,BookRepository $BookRepository): Response
     {
        
+        $user = $this->getUser();
 
         $data =  $BookRepository->findall();
 
@@ -24,7 +26,7 @@ class CatalogueController extends AbstractController
         );
         {
             return $this->render('catalogue/catalogue.html.twig', [
-                'Books' => $Books,
+                'Books' => $Books,'User' => $user
             ]);
         }
     }

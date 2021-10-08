@@ -74,6 +74,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $Bookeds;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $bookborrowed = 0 ;
+
 
 
     public function __construct()
@@ -288,6 +293,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $booked->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getBookborrowed(): ?int
+    {
+        return $this->bookborrowed;
+    }
+
+    public function setBookborrowed(?int $bookborrowed): self
+    {
+        $this->bookborrowed = $bookborrowed;
 
         return $this;
     }

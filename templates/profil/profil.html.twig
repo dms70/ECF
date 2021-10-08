@@ -16,20 +16,24 @@
           <div class="col-12 col-md-6 col-lg-4 py-8 py-md-11">
 
             <label for="FormControlEmail" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder={{ app.user.email }} disabled>
+            <input type="email" class="form-control" id="exampleFormControlemail" placeholder={{ app.user.email }} disabled>
 
             <label for="FormControlfirstname" class="form-label-firstname">Prénom</label>
-            <input type="name" class="form-control" id="exampleFormControlInput1" placeholder={{ app.user.firstname }} disabled>
+            <input type="name" class="form-control" id="exampleFormControlfirstname" placeholder={{ app.user.firstname }} disabled>
 
             <label for="FormControlfirstname" class="form-label-lastname">Nom</label>
-            <input type="name" class="form-control" id="exampleFormControlInput1" placeholder={{ app.user.lastname }} disabled>
+            <input type="name" class="form-control" id="exampleFormControllastname" placeholder={{ app.user.lastname }} disabled>
 
-            <label for="FormControlbirthdate" class="form-label-birthdate">Adresse postale</label>
-            <input type="name" class="form-control" id="exampleFormbirthdate" placeholder={{ app.user.adress }} disabled>
+            <label for="FormControladress" class="form-label-birthdate">Adresse postale</label>
+            <input type="name" class="form-control" id="exampleFormadress" placeholder={{ app.user.adress }} disabled>
 
             <label for="FormControlbirthdate" class="form-label-birthdate">Date de Naissance</label>
             <input type="name" class="form-control" id="exampleFormbirthdate" placeholder={{ app.user.birthdate.format('d/m/Y') }} disabled>
-
+                     {% if app.user.bookborrowed != NULL %}
+            <label for="FormControlbookborrowed" class="form-label-birthdate">Nombres de Livres</label>
+            <input type="number" class="form-control" id="exampleFormbookborrowed" placeholder={{ app.user.bookborrowed }} disabled>
+                     {% else %} 
+                     {% endif %} 
           </div>
         </div> <!-- / .row -->
       </div> <!-- / .container -->

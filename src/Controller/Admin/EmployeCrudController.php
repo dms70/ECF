@@ -30,6 +30,7 @@ class EmployeCrudController extends AbstractCrudController
             
             TextField::new('email', null),
             ArrayField::new('roles', null),
+            TextField::new('password', null),
             BooleanField::new('is_verified', null),
             TextField::new('firstname'),
             TextField::new('lastname'),

@@ -60,7 +60,7 @@
                 <span class="h6 text-uppercase">Bandes dessinées</span>
               </a>
               <a class="badge rounded-pill bg-secondary-soft me-1 mb-1" href="{{ path('categoriesEnfants') }}" >
-                <span class="h6 text-uppercase">Albums pour enfants</span>
+                <span class="h6 text-uppercase">Albums enfants</span>
               </a>
               <a class="badge rounded-pill bg-secondary-soft me-1 mb-1"href="{{ path('categoriesDocumentaires') }}" >
                 <span class="h6 text-uppercase">Documentaires</span>
@@ -127,11 +127,19 @@
                        <span class="badge badge-lg btn-success text-dark" >      
                        Disponible à la réservation 
                        </span>
+                       
+                       {% if  app.user.bookborrowed < 10 %}
                        <!-- Button -->
                          <a  href="{{ path ('addreservation', {'isbn' : Book.isbn})}}" class="btn w-100 btn btn-success" >
                          JE RESERVE
                         </a>
+                        {% else %}
 
+                        <a  href="{{ path ('addreservation', {'isbn' : Book.isbn})}}" class="btn w-100 btn btn-danger" >
+                         NOMBRE DE 10 LIVRES ATTEINT
+                        </a>
+
+                        {% endif %}
 
 
 

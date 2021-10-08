@@ -29,10 +29,6 @@
                 <!-- Text -->
                 <span class="input-group-text border-0 py-0 ps-1 pe-3">
 
-                  <!-- Text -->
-                  <span class="h6 text-uppercase text-muted d-none d-md-block mb-0 me-5">
-                    1 resultat
-                  </span>
 
                   <!-- Button -->
                   <button type="submit" class="btn btn-sm btn-primary">
@@ -68,34 +64,44 @@
 <!-- Card -->
             <a class="card card-flush mb-7" href="#!">
 
-              <!-- Image -->
-              <div class="card-zoom">
-                <img class="card-img-top rounded shadow-light-lg" src="{{ vich_uploader_asset(Books, 'imageFile') }}" alt="...">
-              </div>
+                      <!-- Image -->
+                      <div class="card-zoom">
+                      <img class="card-img-top rounded shadow-light-lg" src="{{ vich_uploader_asset(Books, 'imageFile') }}" alt="...">
+                      </div>
 
-                      {% if Books.reserved == 1  %}
-                        <!-- Badges -->
-                        <span class="badge badge-lg btn-warning text-dark">      
+                      {% if Books.reserved == 1 and date(Books.bookeddate) < date('-2days') %}
+                      <span class="badge badge-lg btn-danger text-dark">      
+                        DERNIER JOUR AVANT ANNULATION
+                      </span>
+                      {% endif %}
+                      {% if Books.reserved == 1 and date(Books.bookeddate) >  date('-2days') %}
+                      <span class="badge badge-lg btn-warning text-dark">      
                         Réservé le :  {{Books.bookeddate|date('d-m-Y')}}
                        </span>
+                      {% endif %}
 
-                       {% endif %}
 
-                       {% if Books.borrowed == 1 %}
-                       <span class="badge badge-lg btn-warning text-dark">      
-                        Emprunté le :  {{Books.bookeddate|date('d-m-Y')}}
-                       </span>
-                        <!-- Button -->
+                      {% if Books.borrowed == 1  and date(Books.bookeddate) < date('-30days') %}
+                      <span class="badge badge-lg btn-danger  text-dark">      
+                       DELAI EMPRUNT DEPASSE
+                      </span>
+                      {% endif %}
+
+                       {% if Books.borrowed == 1  and date(Books.bookeddate) > date('-30days') %}
+                      <span class="badge badge-lg btn-warning  text-dark">      
+                       Emprunté le : <i class="fe ms-3"></i> le {{Books.bookeddate|date('d-m-Y')}}
+                      </span>
+                      {% endif %}
+
+
+                      {% if Books.borrowed == 1 %}
                        <a href="#!" class="btn w-100 btn btn-info">
-                         Emprunté le : <i class="fe ms-3"></i> le {{Books.bookeddate|date('d-m-Y')}}
-                       </a>
+                        Emprunté 
+                      </a>
+                      {% endif %} 
 
-
-                       {% endif %}
-          
                        {% if Books.reserved == 1 %} 
-                        <a  href="{{ path ('removereservation', {'isbn' : Books.isbn})}}" class="btn w-100 btn-danger text-dark" >Annulation
-                 
+                        <a  href="{{ path ('removereservation', {'isbn' : Books.isbn})}}" class="btn w-100 btn btn btn-warning text-dark" >Annulation
                         </a>
                        {% endif %}
 
