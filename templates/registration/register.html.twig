@@ -50,7 +50,7 @@
         {{ form_row(registrationForm.lastname) }}
         {{ form_row(registrationForm.birthdate) }}
         {{ form_row(registrationForm.adress) }}
-        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.email, {'attr': {'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password', id:'passwordfirst'
         }) }}
