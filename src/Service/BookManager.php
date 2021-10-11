@@ -2,18 +2,31 @@
 namespace App\Service;
 use App\Entity\Book;
 use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use App\Controller\ObjectManager;
-use Symfony\Component\HttpFoundation\Request;
+use  \app\Repository\UserRepository;
+use  \app\Repository\BookedRepository;
 
 
 
 
 class BookManager extends AbstractController
 {
+
+    public function searchbookpertitle($data)
+    {
+
+        $title = $data['Recherche'];
+        dump($data);
+        $entityManager = $this->getDoctrine()->getManager();
+        $book = $entityManager->getRepository(Book::class)->findOneBytitle($title);
+        dump($title);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $repository = $entityManager->getRepository(Book::class);
+        $bookbyIsbn = $repository->findAllWithtitle(title : $title);
+  
+        return $title;
+    }
 
 
     public function searchbookreserved($data)
@@ -146,8 +159,6 @@ class BookManager extends AbstractController
         dump($isbn);
 
     }
-
-
 
 
 

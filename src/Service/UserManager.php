@@ -6,7 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Controller\ObjectManager;
+use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Component\HttpFoundation\Request;
+use  \app\Repository\UserRepository;
 
 
 
@@ -31,7 +33,7 @@ class UserManager extends AbstractController
     }
 
 
-    public function searchisverified($data)
+    public function searchisverified($data) 
     {
 
         $email = $data['Recherche'];
@@ -46,6 +48,44 @@ class UserManager extends AbstractController
   
         return $email;
     }
+
+   
+    public function changestatusregistered(int $id) : void
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $user = $this->getDoctrine()
+        ->getRepository(user::class)
+        ->find($id);
+
+
+
+        //$user = $userRepository->findByid($id);
+
+        $statusIsVerified = $user ->isVerified();
+
+        if ( $statusIsVerified == true ) 
+        {
+            $result = false;
+            
+        };
+
+        if ( $statusIsVerified == false ) 
+        {
+            $result = true;
+            
+        };
+
+
+        $user->setIsVerified($result);
+  
+        $entityManager->persist($user);
+
+        $entityManager->flush();
+
+         
+
+    }
+
 
 
 

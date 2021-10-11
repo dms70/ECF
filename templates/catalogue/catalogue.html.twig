@@ -19,34 +19,14 @@
         <div class="row">
           <div class="col-12">
 
-            <!-- Form -->
-            <form class="rounded shadow">
-              <div class="input-group input-group-lg">
-
-                <!-- Text -->
-                <span class="input-group-text border-0 pe-1">
-                  <i class="fe fe-search"></i>
-                </span>
-
-                <!-- Input -->
-                <input type="text" class="form-control border-0 px-1"  aria-label="Recherche de Livres" placeholder="Recherche de Livres" value="">
-
-                <!-- Text -->
-                <span class="input-group-text border-0 py-0 ps-1 pe-3">
-
-                  <!-- Button -->
-                  <button type="submit" class="btn btn-sm btn-primary">
-                    Rechercher
-                  </button>
-
-                </span>
-
-              </div>
-            </form>
+                    {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                          <button type="submit" class="btn btn-lg btn-primary">Rechercher par Titre du livre</button>
+                    {{ form_end(form) }}
           </div>
         </div> <!-- / .row -->
       </div>
-                          <div class="col-6 col-md-6 d-flex">
+                      <div class="col-6 col-md-6 d-flex">
                       <div class="card mb-6 shadow-light-lg lift lift-lg">
                  
                       </div>
@@ -70,11 +50,10 @@
                 <span class="h6 text-uppercase">Documentaires</span>
               </a>
             </nav>
+            
     </section>
 
 
-
-           
                     <div class="col-6 col-md-6 d-flex">
                       <div class="card mb-6 shadow-light-lg lift lift-lg">
                  
@@ -93,15 +72,88 @@
                       </div>
                     </div>               
 
-
-       
-
    <!-- CONTENT -->
     <section class="py-8 py-md-11 mt-n10 mt-md-n14">
       <div class="container">
       
         <div class="row" id="portfolio" data-isotope='{"layoutMode": "fitRows"}'>
           <div class="col-12 col-md-4 product">
+
+
+        {% for Bookstitle in Bookstitle %}
+            <!-- Card -->
+            <a class="card card-flush mb-7" href="#!"  />
+
+              <!-- Image -->
+              <div class="card-zoom">
+                <img class="card-img-top rounded shadow-light-lg"  src="{{ vich_uploader_asset(Bookstitle, 'imageFile') }} " alt="...">
+              </div>
+
+               {% if Bookstitle.reserved == 1  %}
+                        <!-- Badges -->
+                       <span class="badge badge-lg btn-warning text-dark">      
+                       Réservé le : {{Bookstitle.bookeddate|date('d-m-Y')}}
+                       </span>
+                       {% endif %}
+
+                       {% if Bookstitle.borrowed == 1  %}
+                       <!-- Badges -->
+                       <span class="badge badge-lg btn-danger text-dark">      
+                       Emprunté le :  {{Bookstitle.bookeddate|date('d-m-Y')}}
+                       </span>
+                        {% endif %}
+                    
+
+                       {% if Bookstitle.reserved == 0 and Bookstitle.borrowed == 0 %}
+                       <!-- Badges -->
+                       <span class="badge badge-lg btn-success text-dark" >      
+                       Disponible à la réservation 
+                       </span>
+                       
+                       {% if  app.user.bookborrowed < 10 %}
+                       <!-- Button -->
+                         <a  href="{{ path ('addreservation', {'isbn' : Bookstitle.isbn})}}" class="btn w-100 btn btn-success" >
+                         JE RESERVE
+                        </a>
+                        {% else %}
+
+                        <a class="btn w-100 btn btn-danger" >
+                         NOMBRE DE 10 LIVRES ATTEINT
+                        </a>
+
+                        {% endif %}
+
+
+
+                       {% endif %}
+                              
+                  
+
+              <!-- Footer -->
+              <div class="card-footer">
+
+            <!-- Preheading -->
+                <h6 class="text-uppercase mb-1 text-muted">Titre : {{ Bookstitle.title}}</h6>
+
+                <!-- Heading -->
+                <h4 class="mb-0  mb-1 text-muted">Desription :  {{Bookstitle.description}}</h4>
+
+                <h4 class="mb-0  mb-1 text-muted">Auteur : {{Bookstitle.author}}</h4>
+                
+
+
+              </div>
+
+            </a>
+
+          </div>
+          <div class="col-12 col-md-4 resources">
+
+    {% endfor %}
+
+
+                       
+
          
     {% for Book in Books %}
             <!-- Card -->

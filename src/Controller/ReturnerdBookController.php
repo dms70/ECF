@@ -5,8 +5,6 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use App\Form\Searchbook;
 use Symfony\Component\HttpFoundation\Request;
 use App\Service\BookManager;
@@ -41,27 +39,14 @@ class ReturnerdBookController extends AbstractController
 
        
         return $this->render('returnerd_book/index.html.twig', [
-            'AllBooks' =>$bookbyUserMethode = $repository->findAllBorrowed(),
-            'Books' =>$bookbyIsbn = $repository->findAllWithISBN(isbn : $isbn),
+            'AllBooks' => $bookbyUserMethode = $repository->findAllBorrowed(),
+            'Books' => $bookbyIsbn = $repository->findAllWithISBN(isbn : $isbn),
             'controller_name' => 'ReturnerdBookController','form' => $form->createView()
         ]);
 
 
 
     }
-
-
-    public function searchreturner(Request $request) : response
-{
-    //$form = $this->createForm(ContactType::class);
-    //$form->handleRequest($request);
-    $form->handleRequest($request);
-    $data = $form->getData();
-    dump($data);
-
-    return new Response(content : '<body></body>');
-}
-
 
 
 }

@@ -53,6 +53,16 @@ class BookRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+
+    public function findAllWithtitle(string $title)
+    {
+        return $this->createQueryBuilder('e')
+            ->where('e.title = :title')
+            ->setParameter('title', $title)
+            ->getQuery()
+            ->getResult();
+    }
    
     public function findAllBorrowed()
     {

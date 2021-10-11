@@ -12,8 +12,8 @@ return false;
 
 
 
-$(document).ready(function(){
-  $('.run').on('click' , function(event){
+jquery(document).ready(function(){
+    jquery('.run').on('click' , function(event){
     alertify.alert("This is an alert dialog.", function(){
       alertify.message('OK');
     });

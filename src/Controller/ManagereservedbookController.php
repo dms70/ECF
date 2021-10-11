@@ -2,11 +2,14 @@
 
 namespace App\Controller;
 use App\Service\BookManager;
+use App\Service\UserManager;
 use App\Entity\Book;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Controller\ObjectManager;
+use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -51,6 +54,14 @@ public function index(): Response
         ]);
 }
 
+#[Route('/changestatusregistered/{id}', name: 'changestatusregistered')]
+public function changestatusregistered(UserManager $UserManager, int $id)
+{
+
+   // dump($IsVerified);
+    $UserManager->changestatusregistered($id);
+    return $this->redirectToRoute('registered');
 
 
+}
 }
