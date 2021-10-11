@@ -5,6 +5,7 @@ use App\Entity\User;
 use App\Entity\Booked;
 use App\Entity\Book;
 use App\Entity\Category;
+use App\Entity\Genre;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -35,5 +36,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('reservation', 'fas fa-home', Booked::class);
         yield MenuItem::linkToCrud('Livres', 'fas fa-home', Book::class);
         yield MenuItem::linkToCrud('category', 'fas fa-home', Category::class);
+        yield MenuItem::linkToCrud('Genre', 'fas fa-home', Genre::class);
     }
 }

@@ -29,6 +29,7 @@ class Book
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @var string
      */
     private $image;
 
@@ -92,6 +93,11 @@ class Book
      */
     private $borrowed;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Genre::class, inversedBy="book")
+     */
+    private $genre;
+
 
 
     public function getId(): ?int
@@ -125,19 +131,19 @@ class Book
 
 
 
-    public function setImageFile(File $file = null)
+    public function setImageFile(File $image = null)
     {
-        $this->imageFile = $file;
+        $this->imageFile = $image;
 
         // VERY IMPORTANT:
         // It is required that at least one field changes if you are using Doctrine,
         // otherwise the event listeners won't be called and the file is lost
-        if ($file) {
+        if ($image) {
             // if 'updatedAt' is not defined in your entity, use another property
-            $this->datemakeup = new \DateTime('now');
+            $this->publishdate = new \DateTime('now');
         }
+        return $this;
     }
-
 
     public function getImageFile()
     {
@@ -272,6 +278,18 @@ class Book
     public function setBorrowed(?bool $borrowed): self
     {
         $this->borrowed = $borrowed;
+
+        return $this;
+    }
+
+    public function getGenre(): ?Genre
+    {
+        return $this->genre;
+    }
+
+    public function setGenre(?Genre $genre): self
+    {
+        $this->genre = $genre;
 
         return $this;
     }

@@ -35,15 +35,15 @@ public static function getEntityFqcn(): string
         return [
             
             TextField::new('title', null),
-
-            TextField::new('imageFile', null)->setFormType(VichImageType::class)->OnlyWhenCreating(),
-            ImageField::new('image', null)->setBasePath('/uploads/couverture')->OnlyOnIndex(),
+            TextField::new('imageFile')->setFormType(VichImageType::class)->OnlyWhenCreating(),
+            ImageField::new('image')->setBasePath('/uploads/couverture')->OnlyOnIndex(),
             DateTimeField::new('publishdate', null),
             TextareaField::new('description'),
             TextField::new('author'),
             IntegerField::new('copy'),
             IntegerField::new('isbn'),
             AssociationField::new('categories'),
+            AssociationField::new('genre'),
              
         
             
