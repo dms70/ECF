@@ -35,12 +35,13 @@ security:
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
     role_hierarchy:
-        ROLE_ADMIN:         [ROLE_ADMIN]
-        ROLE_HABITANT:      [ROLE_HABITANT]
-        ROLE_EMPLOYE:       [ROLE_EMPLOYE]
+        ROLE_ADMIN:         ROLE_ADMIN
+        ROLE_EMPLOYE:       [ROLE_EMPLOYE,ROLE_ADMIN]
+        ROLE_HABITANT:      [ROLE_HABITANT,ROLE_EMPLOYE,ROLE_ADMIN]
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+
         - { path: ^/profil, roles: ROLE_HABITANT}
         - { path: ^/meslivres, roles: ROLE_HABITANT}
         - { path: ^/catalogue, roles: ROLE_HABITANT}
@@ -53,6 +54,7 @@ security:
         - { path: ^/returnerdbook, roles: ROLE_EMPLOYE }
         - { path: ^/validationbook, roles: ROLE_EMPLOYE }
         - { path: ^/removereservation, roles: ROLE_HABITANT }
+        
         
 
         

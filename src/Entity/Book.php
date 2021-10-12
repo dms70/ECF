@@ -74,7 +74,7 @@ class Book
     private $Bookeds;
 
     /**
-     * @ORM\Column(type="integer", length=15, unique=true )
+     * @ORM\Column(type="bigint", length=13)
      */
     private $isbn;
 
@@ -94,10 +94,9 @@ class Book
     private $borrowed;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Genre::class, inversedBy="book")
+     * @ORM\Column(type="string", length=255)
      */
     private $genre;
-
 
 
     public function getId(): ?int
@@ -282,17 +281,19 @@ class Book
         return $this;
     }
 
-    public function getGenre(): ?Genre
+    public function getGenre(): ?string
     {
         return $this->genre;
     }
 
-    public function setGenre(?Genre $genre): self
+    public function setGenre(string $genre): self
     {
         $this->genre = $genre;
 
         return $this;
     }
+
+
 
 
 }

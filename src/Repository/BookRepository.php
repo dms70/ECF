@@ -92,6 +92,15 @@ class BookRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findAllwithcategoriesname(string $categoriesname)
+    {
+        return $this->createQueryBuilder('e')
+            ->where('e.categoriesname = :categoriesname')
+            ->setParameter('categoriesname', $categoriesname)
+            ->getQuery()
+            ->getResult();
+    }
+
 
  
 

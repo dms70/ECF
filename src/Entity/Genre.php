@@ -24,15 +24,6 @@ class Genre
      */
     private $genrename;
 
-    /**
-     * @ORM\OneToMany(targetEntity=book::class, mappedBy="genre")
-     */
-    private $book;
-
-    public function __construct()
-    {
-        $this->book = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -51,35 +42,6 @@ class Genre
         return $this;
     }
 
-    /**
-     * @return Collection|book[]
-     */
-    public function getBook(): Collection
-    {
-        return $this->book;
-    }
-
-    public function addBook(book $book): self
-    {
-        if (!$this->book->contains($book)) {
-            $this->book[] = $book;
-            $book->setGenre($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBook(book $book): self
-    {
-        if ($this->book->removeElement($book)) {
-            // set the owning side to null (unless already changed)
-            if ($book->getGenre() === $this) {
-                $book->setGenre(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function __ToString ()
 

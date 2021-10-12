@@ -1,7 +1,7 @@
 <?php
 
-namespace App\EventSubscriber;
 
+namespace App\EventSubscriber;
 use App\Entity\User;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Doctrine\ORM\EntityManagerInterface;

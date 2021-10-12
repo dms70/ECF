@@ -8,9 +8,9 @@ parameters:
         app.path.product_images: /uploads/couverture
 
 services:
-    App\Service\EventEntitySubscriber:
-        tags:
-            - { name: 'doctrine.event_subscriber' }
+# App\Service\EventEntitySubscriber:
+       ## tags:
+         #   - { name: 'doctrine.event_subscriber' }
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.

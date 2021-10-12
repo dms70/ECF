@@ -22,16 +22,39 @@
     
           <!-- Navigation -->
           <ul class="navbar-nav ms-auto">
-          
+
+
             <li class="nav-item dropdown">
-              <a class="nav-link " id="navbarLandings" 
-              href="{{ path('profil') }}" aria-haspopup="true" aria-expanded="false">
-                Mon Profil
+              <a class="nav-link dropdown-toggle" id="navbarDocumentation"  href="{{ path('profil') }}" aria-haspopup="true" aria-expanded="false">
+                 Mon Profil
               </a>
-              <div class="dropdown-menu dropdown-menu-xl p-0" aria-labelledby="navbarLandings">
-                <div class="row gx-0">
-                  <div class="col-12 col-lg-6">
-            </li>
+              <div class="dropdown-menu dropdown-menu-md" aria-labelledby="navbarDocumentation">
+                <div class="list-group list-group-flush">
+                  <a class="list-group-item" href="{{ path('changepassword') }}">
+    
+                    <!-- Icon -->
+                    <div class="icon icon-sm text-primary">
+                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <img src="/img/parametre.png" width="40" height="40">   
+                      </svg>                
+                    </div>
+    
+                    <!-- Content -->
+                    <div class="ms-4">
+    
+                      <!-- Heading -->
+                      <h6 class="fw-bold text-uppercase text-primary mb-0">
+                        parametre
+                      </h6>
+                    </div>
+                  </a>
+
+
+      
+
+
+
+
             <li class="nav-item dropdown">
               <a class="nav-link " id="navbarAccount"  href="{{ path('mes_livres') }}" aria-haspopup="true" aria-expanded="false">
                 Mes Livres

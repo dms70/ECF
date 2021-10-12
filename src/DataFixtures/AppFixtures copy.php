@@ -7,7 +7,7 @@ use App\entity\Genre;
 use App\entity\Book;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-//use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+#use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Faker\Factory;
 
@@ -33,9 +33,9 @@ class AppFixtures extends Fixture
             ->setFirstname('david')
             ->setLastname('marcais')
             ->setAdress($faker->address())
-            ->setRoles(["ROLE_ADMIN","ROLE_EMPLOYE","ROLE_HABITANT"])
+            ->setRoles(["ROLE_ADMIN"])
             ->setBirthdate($faker->dateTimeBetween('-40 years','now', ))
-            ->setIsVerified(true);
+            ->setIsVerified('true');
             $password = $this->passwordEncoder->HashPassword( $user, 'password' );
             $user->setPassword($password);
     
@@ -51,7 +51,7 @@ class AppFixtures extends Fixture
             ->setAdress($faker->address())
             ->setRoles(["ROLE_HABITANT"])
             ->setBirthdate($faker->dateTimeBetween('-40 years','now', ))
-            ->setIsVerified(false);
+            ->setIsVerified('true');
             
 
             $password = $this->passwordEncoder->HashPassword( $user, $i.'password' );
@@ -69,9 +69,9 @@ class AppFixtures extends Fixture
             ->setFirstname($faker->firstname())
             ->setLastname($faker->lastname())
             ->setAdress($faker->address())
-            ->setRoles(["ROLE_EMPLOYE","ROLE_HABITANT"])
+            ->setRoles(["ROLE_EMPLOYE"])
             ->setBirthdate($faker->dateTimeBetween('-40 years','now', ))
-            ->setIsVerified(true);
+            ->setIsVerified('true');
             
 
             $password = $this->passwordEncoder->HashPassword( $user, $i.'password' );
@@ -85,68 +85,62 @@ class AppFixtures extends Fixture
 
             $value= ['ROMANS','BANDES DESSINEES','ALBUMS ENFANTS','DOCUMENTS'];
             
-            for ($k=1; $k <= count($value); $k++)
+            for ($i=1; $i<= count($value); $i++)
                {$Category = [];
                 $Category = new Category();
-                $Category->setGenre($value[$k-1]);
+                $Category->setGenre($value[$i-1]);
 
                 $manager-> persist($Category);
         
-                $image=['ROMANS.JPG','BD.JPG','ALBUMSENFANTS.JPG','DOCUMENTS.JPG'];
-               
-                $valuegenre= ['SCIENCE-FICTION','FANTASTIQUE','THILLER','HORREUR','NATURE','MUSIQUE','HISTOIRE'];
-                $l = rand(0,6);
-
-                for ($j=1; $j<25; $j++) 
-                { 
-                    $book = [];
-                    $book = new Book();
-          
-                $book->setTitle($faker->word(8))
-                ->setpublishdate($faker->dateTimeBetween('-40 years','now', ))
-                ->setDescription($faker->text())
-                ->setAuthor($faker->firstname())
-                ->Setcopy(1)
-                ->setISBN($faker->isbn13)
-                ->setImage($image[$k-1])
-                ->setCategories($Category)
-                ->setGenre($valuegenre[$l]);
-            
-             
-    
-                $manager-> persist($book);
-        
-             
-                }
-        
-               
-            
-            
-
-                
-    
-                
                 $manager->flush();
+            
             }
             
 
-
-            $valuegenre= ['SCIENCE-FICTION','FANTASTIQUE','THILLER','HORREUR','NATURE','MUSIQUE','HISTOIRE'];
-
+            $value= ['SCIENCE-FICTION','FANTASTIQUE','THILLER','HORREUR','NATURE','MUSIQUE','HISTOIRE'];
+            
             for ($i=1; $i<= count($value); $i++)
-            {$Genre = [];
-            $Genre = new Genre();
-            $Genre->setGenrename($value[$i-1]);
+               {$Genre = [];
+                $Genre = new Genre();
+                $Genre->setGenrename($value[$i-1]);
 
-            $manager-> persist($Genre);
+                $manager-> persist($Genre);
+        
+                $manager->flush();
+            
+            }
 
+
+
+            for ($i=0; $i<10; $i++) 
+            { $book = new Book();
+            $book->setTitle($faker->word(8))
+            ->setpublishdate($faker->dateTimeBetween('-40 years','now', ))
+            ->setDescription($faker->text())
+            ->setAuthor($faker->firstname())
+            ->Setcopy('1')
+            ->setISBN($faker->isbn11())
+            ->setImage('https://picsum.photos/360/360');
+
+            $manager-> persist($book);
+    
             $manager->flush();
             }
-
-
        
     }
 }
 
 
+
+$valuegenre= ['SCIENCE-FICTION','FANTASTIQUE','THILLER','HORREUR','NATURE','MUSIQUE','HISTOIRE'];
+
+for ($i=1; $i<= count($value); $i++)
+{$Genre = [];
+ $Genre = new Genre();
+ $Genre->setGenrename($value[$i-1]);
+
+ $manager-> persist($Genre);
+
+ $manager->flush();
+}
 
