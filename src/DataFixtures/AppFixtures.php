@@ -7,7 +7,6 @@ use App\entity\Genre;
 use App\entity\Book;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-//use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Faker\Factory;
 
@@ -26,8 +25,10 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+
         $faker = Factory::create('fr_FR');
         $faker->addProvider(new \Smknstd\FakerPicsumImages\FakerPicsumImagesProvider($faker));
+    
         $user = new User();
 
         $user->setEmail('david@marcais.online')

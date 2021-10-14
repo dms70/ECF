@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\EntityRepository;
 use App\Repository\UserRepository;
 use App\Service\UserManager;
 use App\Form\Searchemail;
@@ -38,7 +39,7 @@ class RegisteredController extends AbstractController
             $UserManager->searchemail($data);
             $email = $data['Recherche'];
         }     
-
+        /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository(User::class);
        // $UserMethode = $repository->findAllUser();
@@ -48,7 +49,7 @@ class RegisteredController extends AbstractController
 
        
         return $this->render('registered/registered.html.twig', [
-            'AllUsers' => $UserMethode=$repository->findAll(),
+            'AllUsers' => $repository->findAll(),
             'users' => $UserMethode2->findByEmail(email : $email),
             'controller_name' => 'RegisteredController','form' => $form->createView()
         ]);

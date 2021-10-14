@@ -1,14 +1,8 @@
 <?php
 namespace App\Service;
 use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use App\Controller\ObjectManager;
-use phpDocumentor\Reflection\Types\Boolean;
-use Symfony\Component\HttpFoundation\Request;
-use  \app\Repository\UserRepository;
+
 
 
 
@@ -21,10 +15,11 @@ class UserManager extends AbstractController
 
         $email = $data['Recherche'];
         dump($data);
+        /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $user = $entityManager->getRepository(User::class)->findOneByemail($email);
         dump($email);
-
+        /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository(User::class);
         $userbyEmail = $repository->findOneByemail(email : $email);
@@ -38,10 +33,11 @@ class UserManager extends AbstractController
 
         $email = $data['Recherche'];
         dump($data);
+        /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $user = $entityManager->getRepository(User::class)->findOneByemail($email);
         dump($email);
-
+        /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository(User::class);
         $userbyEmail = $repository->findOneByemail(email : $email);

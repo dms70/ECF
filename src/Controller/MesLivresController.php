@@ -40,7 +40,7 @@ class MesLivresController extends AbstractController
 
         //$bookbyUserMethode1 = $BookRepository->findBookedwithquerybuilder(user_id:$userId);
 
-
+        /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository(Book::class);
         $bookbyUserMethode2 = $repository->findAllWithQB(user_id : $userId);

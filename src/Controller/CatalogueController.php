@@ -33,7 +33,7 @@ class CatalogueController extends AbstractController
 
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository(Book::class);
-
+        /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository(Book::class);
         //$bookbyUserMethode = $repository->findAllWithtitle();

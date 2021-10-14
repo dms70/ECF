@@ -16,11 +16,10 @@ class BookManager extends AbstractController
     {
 
         $title = $data['Recherche'];
-        dump($data);
+        /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $book = $entityManager->getRepository(Book::class)->findOneBytitle($title);
-        dump($title);
-
+        /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository(Book::class);
         $bookbyIsbn = $repository->findAllWithtitle(title : $title);
@@ -33,11 +32,11 @@ class BookManager extends AbstractController
     {
 
         $isbn = $data['Recherche'];
-        dump($data);
+        /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $book = $entityManager->getRepository(Book::class)->findOneByisbn($isbn);
-        dump($isbn);
 
+        /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository(Book::class);
         $bookbyIsbn = $repository->findAllWithISBN(isbn : $isbn);
@@ -53,7 +52,7 @@ class BookManager extends AbstractController
         $user = $this->getUser();
         $userId = $user->getId();
 
-        //dump($isbn);
+        /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $book = $entityManager->getRepository(Book::class)->findOneByisbn($isbn);
         dump($book);
@@ -76,8 +75,8 @@ class BookManager extends AbstractController
 
     public function removeborrowed(int $isbn): void
     {
-        //dump($isbn);        
-
+               
+        /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $book = $entityManager->getRepository(Book::class)->findOneByisbn($isbn);
 
@@ -111,8 +110,8 @@ class BookManager extends AbstractController
         $user = $this->getUser();
         $userId = $user->getId();
 
-        dump($userId);
 
+        /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $book = $entityManager->getRepository(Book::class)->findOneByisbn($isbn);
         //dump($book);
@@ -144,8 +143,7 @@ class BookManager extends AbstractController
         $user = $this->getUser();
         $userId = $user->getId();
 
-        dump($userId);
-
+        /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $book = $entityManager->getRepository(Book::class)->findOneByisbn($isbn);
         dump($book);
