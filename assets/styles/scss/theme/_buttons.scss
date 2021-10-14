@@ -29,7 +29,7 @@
 
   &:hover, &:focus {
     background-color: $white;
-    color: darken($primary, 5%);
+    color: darken($primary, 50%);
   }
 
   &.active {

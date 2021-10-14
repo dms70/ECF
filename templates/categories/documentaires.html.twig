@@ -1,0 +1,258 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CatagoriesController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+       <div class="row align-items-center justify-content-center">
+       <span class="badge bg-primary-soft"> Date du jour : {{ "now"|date("d-m-Y") }}</span>         
+      </div>
+           
+           
+    <!-- SEARCH -->
+    <section class="py-6">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+
+                    {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                          <button type="submit" class="btn btn-lg btn-primary">Rechercher par GENRE du livre</button>
+                    {{ form_end(form) }}
+          </div>
+        </div> <!-- / .row -->
+      </div>
+                      <div class="col-6 col-md-6 d-flex">
+                      <div class="card mb-6 shadow-light-lg lift lift-lg">
+                 
+                      </div>
+                     </div>       
+
+                        <!-- Badges -->
+            <nav class="nav justify-content-center">
+            <a class="badge rounded-pill bg-secondary-soft me-1 mb-1" href="{{ path('catalogue') }}" >
+                <span class="h6 text-uppercase">Catalogue</span>
+              </a>
+              <a class="badge rounded-pill bg-secondary-soft me-1 mb-1" href="{{ path('categoriesDocumentaires') }}" >
+                <span class="h6 text-uppercase">Documentaires</span>
+              </a>
+
+            </nav>
+            
+    </section>
+
+
+                    <div class="col-6 col-md-6 d-flex">
+                      <div class="card mb-6 shadow-light-lg lift lift-lg">
+                 
+                      </div>
+                    </div>       
+
+                                        <div class="col-6 col-md-6 d-flex">
+                      <div class="card mb-6 shadow-light-lg lift lift-lg">
+                 
+                      </div>
+                    </div>       
+
+                                        <div class="col-6 col-md-6 d-flex">
+                      <div class="card mb-6 shadow-light-lg lift lift-lg">
+                 
+                      </div>
+                    </div>               
+
+   <!-- CONTENT -->
+    <section class="py-8 py-md-11 mt-n10 mt-md-n14">
+      <div class="container">
+      
+        <div class="row" id="portfolio" data-isotope='{"layoutMode": "fitRows"}'>
+          <div class="col-12 col-md-4 product">
+
+
+        {% for Bookstitle in Bookstitle %}
+            <!-- Card -->
+            <a class="card card-flush mb-7" href="#!"  />
+
+              <!-- Image -->
+              <div class="card-zoom">
+                <img class="card-img-top rounded shadow-light-lg"  src="{{ vich_uploader_asset(Bookstitle, 'imageFile') }} " alt="...">
+              </div>
+
+               {% if Bookstitle.reserved == 1  %}
+                        <!-- Badges -->
+                       <span class="badge badge-lg btn-warning text-dark">      
+                       Réservé le : {{Bookstitle.bookeddate|date('d-m-Y')}}
+                       </span>
+                       {% endif %}
+
+                       {% if Bookstitle.borrowed == 1  %}
+                       <!-- Badges -->
+                       <span class="badge badge-lg btn-danger text-dark">      
+                       Emprunté le :  {{Bookstitle.bookeddate|date('d-m-Y')}}
+                       </span>
+                        {% endif %}
+                    
+
+                       {% if Bookstitle.reserved == 0 and Bookstitle.borrowed == 0 %}
+                       <!-- Badges -->
+                       <span class="badge badge-lg btn-success text-dark" >      
+                       Disponible à la réservation 
+                       </span>
+                       
+                       {% if  app.user.bookborrowed < 10 %}
+                       <!-- Button -->
+                         <a  href="{{ path ('addreservation', {'isbn' : Bookstitle.isbn})}}" class="btn w-100 btn btn-success" >
+                         JE RESERVE
+                        </a>
+                        {% else %}
+
+                        <a class="btn w-100 btn btn-danger" >
+                         NOMBRE DE 10 LIVRES ATTEINT
+                        </a>
+
+                        {% endif %}
+
+
+
+                       {% endif %}
+                              
+                  
+
+              <!-- Footer -->
+              <div class="card-footer">
+
+            <!-- Preheading -->
+                <h6 class="text-uppercase mb-1 text-muted">Titre : {{ Bookstitle.title}}</h6>
+
+                
+                <h6 class="text-uppercase mb-1 text-muted">Genre : {{ Bookstitle.genre}}</h6>
+                <!-- Heading -->
+                <h4 class="mb-0  mb-1 text-muted">Desription :  {{Bookstitle.description}}</h4>
+
+                <h4 class="mb-0  mb-1 text-muted">Auteur : {{Bookstitle.author}}</h4>
+
+         
+                
+
+
+              </div>
+
+            </a>
+
+          </div>
+          <div class="col-12 col-md-4 resources">
+
+    {% endfor %}
+
+
+                       
+
+         
+    {% for Book in Books %}
+            <!-- Card -->
+            <a class="card card-flush mb-7" href="#!"  />
+
+              <!-- Image -->
+              <div class="card-zoom">
+                <img class="card-img-top rounded shadow-light-lg"  src="{{ vich_uploader_asset(Book, 'imageFile') }} " alt="...">
+              </div>
+
+                       {% if Book.reserved == 1  %}
+                        <!-- Badges -->
+                       <span class="badge badge-lg btn-warning text-dark">      
+                       Réservé le : {{Book.bookeddate|date('d-m-Y')}}
+                       </span>
+                       {% endif %}
+
+                       {% if Book.borrowed == 1  %}
+                       <!-- Badges -->
+                       <span class="badge badge-lg btn-danger text-dark">      
+                       Emprunté le :  {{Book.bookeddate|date('d-m-Y')}}
+                       </span>
+                        {% endif %}
+                    
+                       {% if Book.reserved == 0 and Book.borrowed == 0 %}
+                       <!-- Badges -->
+                       <span class="badge badge-lg btn-success text-dark" >      
+                       Disponible à la réservation 
+                       </span>
+                       
+                       {% if  app.user.bookborrowed < 10 %}
+                       <!-- Button -->
+                         <a  href="{{ path ('addreservation', {'isbn' : Book.isbn})}}" class="btn w-100 btn btn-success" >
+                         JE RESERVE
+                        </a>
+                        {% else %}
+
+                        <a class="btn w-100 btn btn-danger" >
+                         NOMBRE DE 10 LIVRES ATTEINT
+                        </a>
+
+                        {% endif %}
+
+
+
+                       {% endif %}
+
+                       <!-- Modal -->
+
+
+
+                              
+                    
+
+              <!-- Footer -->
+              <div class="card-footer">
+
+            <!-- Preheading -->
+                <h6 class="text-uppercase mb-1 text-muted">Titre : {{ Book.title}}</h6>
+
+                <h6 class="text-uppercase mb-1 text-muted">Genre : {{ Book.genre}}</h6>
+                <!-- Heading -->
+                <h4 class="mb-0  mb-1 text-muted">Desription :  {{Book.description}}</h4>
+
+                <h4 class="mb-0  mb-1 text-muted">Auteur : {{Book.author}}</h4>
+                
+
+
+              </div>
+
+            </a>
+
+          </div>
+          <div class="col-12 col-md-4 resources">
+          
+           {% endfor %}
+
+
+
+       </div>
+       <div class="d-flex justify-content-center">
+       {% do Books.setPageRange(2) %}
+       <div class="count"></div>
+       {# display navigation #}
+       <div class="navigation">
+       {{ knp_pagination_render(Books, '/home/pagination.html.twig') }}
+       </div>
+        <!-- / .row -->
+    </div>
+    <!-- / .container -->
+  </section>
+
+
+<script>
+var myModal = document.getElementById('myModal')
+var myInput = document.getElementById('myInput')
+
+myModal.addEventListener('shown.bs.modal', function () {
+  myInput.focus()
+})
+</script>
+
+
+
+{% endblock %}
+

@@ -258,6 +258,9 @@
             "./config/packages/sensio_framework_extra.yaml"
         ]
     },
+    "smknstd/fakerphp-picsum-images": {
+        "version": "v1.0.1"
+    },
     "symfony/asset": {
         "version": "v5.3.4"
     },

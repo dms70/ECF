@@ -27,6 +27,7 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('fr_FR');
+        $faker->addProvider(new \Smknstd\FakerPicsumImages\FakerPicsumImagesProvider($faker));
         $user = new User();
 
         $user->setEmail('david@marcais.online')
@@ -94,13 +95,15 @@ class AppFixtures extends Fixture
         
                 $image=['ROMANS.JPG','BD.JPG','ALBUMSENFANTS.JPG','DOCUMENTS.JPG'];
                
-                $valuegenre= ['SCIENCE-FICTION','FANTASTIQUE','THILLER','HORREUR','NATURE','MUSIQUE','HISTOIRE'];
-                $l = rand(0,6);
+                
 
                 for ($j=1; $j<25; $j++) 
                 { 
-                    $book = [];
-                    $book = new Book();
+                $book = [];
+                $book = new Book();
+
+                $valuegenre= ['SCIENCE-FICTION','FANTASTIQUE','THILLER','HORREUR','NATURE','MUSIQUE','HISTOIRE'];
+                $l = rand(0,6);
           
                 $book->setTitle($faker->word(8))
                 ->setpublishdate($faker->dateTimeBetween('-40 years','now', ))
@@ -108,7 +111,7 @@ class AppFixtures extends Fixture
                 ->setAuthor($faker->firstname())
                 ->Setcopy(1)
                 ->setISBN($faker->isbn13)
-                ->setImage($image[$k-1])
+                ->setImage($faker->image($dir = 'C:\xampp\apps\david\ECF\public\uploads\couverture', $width = 640, $height = 480))
                 ->setCategories($Category)
                 ->setGenre($valuegenre[$l]);
             

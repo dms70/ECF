@@ -6,6 +6,7 @@ use App\Entity\Book;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Migrations\Query\Query;
+use phpDocumentor\Reflection\Types\Integer;
 
 /**
  * @method Book|null find($id, $lockMode = null, $lockVersion = null)
@@ -60,6 +61,16 @@ class BookRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('e')
             ->where('e.title = :title')
             ->setParameter('title', $title)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findAllWithGenreperCat(string $genre, $categories)
+    {
+        return $this->createQueryBuilder('e')
+            ->where('e.genre = :genre AND e.categories = :categories')
+            ->setParameter('genre', $genre)
+            ->setParameter('categories', $categories)
             ->getQuery()
             ->getResult();
     }
