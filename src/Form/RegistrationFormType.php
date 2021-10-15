@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -61,14 +62,13 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Nom'
                 ],
                 )
-                ->add(
-                'birthdate',
-                DateType::class,
-                [
-                    'label' => 'Date de Naissance'
-                ],
-            
-                )
+
+                
+                ->add('birthdate', BirthdayType::class, [
+                    'placeholder' => [
+                        'day' => 'Jour', 'month' => 'Mois',  'year' => 'Annee'
+                    ],
+                ])
 
                 ->add(
                     'adress',

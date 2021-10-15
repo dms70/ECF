@@ -8,9 +8,11 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-       <div class="row align-items-center justify-content-center">
-       <span class="badge bg-primary-soft"> Date du jour : {{ "now"|date("d-m-Y") }}</span>         
-      </div>
+<div class="row align-items-center justify-content-center">
+<span class="badge bg-primary-soft"> Date du jour : {{ "now"|date("d-m-Y") }}</span>         
+<span class="badge bg-primary-soft"> Mes Livres </span>     
+</div>
+
            
 
     <!-- SEARCH -->
@@ -106,10 +108,8 @@
                       {% endif %} 
 
                        {% if Books.reserved == 1 %} 
-                        <a  id="exampleModal" href="{{ path ('removereservation', {'isbn' : Books.isbn})}}" class="js-cancelbook btn w-100 btn btn btn-warning text-dark" >Annulation
-                        <span class="js-cancelbook">
-                      
-                        </span>
+                        <a  id="exampleModal" href="{{ path ('removereservation', {'isbn' : Books.isbn})}}" class=" btn w-100 btn btn btn-warning text-dark" >Annulation
+
                         </a>
                         <!-- Modal -->
 

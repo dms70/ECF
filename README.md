@@ -42,6 +42,10 @@ MAILER_DSN=smtp://user:password@smtpserver:port
 
 php bin/console doctrine:fixtures:load
 
+# Modfication du chap image dans book pour enlever le path et garder le nom du fichier
+
+php getfilename.php
+
 # mise en production
 
 # ajout des variables en mode production dans le env.local

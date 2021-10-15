@@ -20,6 +20,8 @@ security:
             security: false
 
         main:
+            entry_point: App\Security\AuthenticationEntryPoint
+            access_denied_handler: App\Security\AccessDeniedHandler
             user_checker: App\Security\UserChecker
             lazy: true
             provider: app_user_provider
@@ -28,16 +30,19 @@ security:
                 path: app_logout
                 # where to redirect after logout
                 # target: app_any_route
-
+            two_factor:
+                auth_form_path: 2fa_login    # The route name you have used in the routes.yaml
+                check_path: 2fa_login_check  # The route name you have used in the routes.yaml
+                trusted_parameter_name: _trusted  
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
 
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
     role_hierarchy:
-        ROLE_ADMIN:         ROLE_ADMIN
+        ROLE_ADMIN:         [ROLE_HABITANT,ROLE_EMPLOYE,ROLE_ADMIN]
         ROLE_EMPLOYE:       [ROLE_EMPLOYE,ROLE_ADMIN]
-        ROLE_HABITANT:      [ROLE_HABITANT,ROLE_EMPLOYE,ROLE_ADMIN]
+        ROLE_HABITANT:      [ROLE_HABITANT]
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
@@ -54,6 +59,8 @@ security:
         - { path: ^/returnerdbook, roles: ROLE_EMPLOYE }
         - { path: ^/validationbook, roles: ROLE_EMPLOYE }
         - { path: ^/removereservation, roles: ROLE_HABITANT }
+        - { path: ^/registered, roles: ROLE_EMPLOYE }
+        
         
         
 

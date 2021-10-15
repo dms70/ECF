@@ -4,6 +4,11 @@
 
 {% block body %}
 
+       <div class="row align-items-center justify-content-center">
+       <span class="badge bg-primary-soft"> Date du jour : {{ "now"|date("d-m-Y") }}</span>         
+       <span class="badge bg-primary-soft"> Gestion des retours </span>     
+      </div>
+
 
 <!-- SEARCH -->
     <section class="py-6">
@@ -20,7 +25,9 @@
 
        <div class="row" id="portfolio" data-isotope='{"layoutMode": "fitRows"}'>
           <div class="col-12 col-md-4 product">
-               {% for Books in Books %}
+           
+           
+            {% for Books in Books %}
        
             <!-- Card -->
             <a class="card card-flush mb-7" href="#!">
@@ -95,8 +102,8 @@
 
             </a>
 
-          </div>
-          <div class="col-12 col-md-4 resources">
+              </div>
+             <div class="col-12 col-md-4 resources">
            {% endfor %}
         </div> 
       </div>
@@ -110,15 +117,17 @@
                       <div class="col-auto">
                         <!-- Avatar -->
                         <div class="avatar avatar-xl">
-                          <img class="avatar-img " src="{{ vich_uploader_asset(AllBooks, 'imageFile') }} ">
+                          <img class="card-img-top rounded shadow-light-lg" src="{{ vich_uploader_asset(AllBooks, 'imageFile') }} ">
                         </div>
                        </div>
+
+
 
                       <div class="col-6 ms-n5">
 
                         <!-- Heading -->
                         <p class="mb-0">
-                          ID utilisateur : {{AllBooks.id}}
+                          ID utilisateur : {{AllBooks.user}}
                         </p>
 
                         <!-- Books -->

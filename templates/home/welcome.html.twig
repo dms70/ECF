@@ -15,9 +15,19 @@
             </p>
 
             <!-- Button -->
+            
+              {% if app.user %}
+              <div class="display-4 text-white text-center">
+              Vous etes connecté en tant que : {{ app.user.firstname }}
+              </div>
+              {% else %}   
             <a href="login" class="btn btn-primary lift" target="_self">
               CONNEXION<i class="ms-auto"></i>
             </a>
+              {% endif %}
+
+
+            
 
           </div>
         </div> <!-- / .row -->

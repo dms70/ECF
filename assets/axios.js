@@ -9,7 +9,7 @@ const url = this.href;
 
 axios.get(url).then(function(response) {
 
-    console.log(response);
+    //console.log(response);
 
     })
 }

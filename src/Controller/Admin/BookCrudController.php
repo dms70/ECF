@@ -43,7 +43,7 @@ public static function getEntityFqcn(): string
             IntegerField::new('copy'),
             IntegerField::new('isbn'),
             AssociationField::new('categories'),
-            AssociationField::new('genre'),
+            TextField::new('genre'),
              
         
             
