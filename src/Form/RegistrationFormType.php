@@ -30,11 +30,14 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Gregwar\CaptchaBundle\Type\CaptchaType;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+       
+
         $builder
 
 
@@ -45,8 +48,15 @@ class RegistrationFormType extends AbstractType
             // *this line is important*
             //'isVerified' => true,
        // ))
-    
-          
+               ->add('captcha', CaptchaType::class, array(
+                'width' => 150,
+                'length' => 4,
+                'ignore_all_effects' => true ,
+                'quality' => 100,
+                'label' => '    ',
+                'height' => 80,
+                
+            ))
                 ->add(
                 'firstname',
                 TextType::class,
@@ -106,8 +116,11 @@ class RegistrationFormType extends AbstractType
                         // max length allowed by Symfony for security reasons
                         'max' => 25,
                     ]),
+                    
                 ],
             ])
+           
+
         ;
     }
 

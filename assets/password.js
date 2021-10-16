@@ -3,12 +3,15 @@ const alertify = require('alertifyjs');
 import 'alertifyjs/build/css/alertify.min.css';
 
 jquery("#new_edit_utilisateur").on('submit', function(){
-if(jquery("#inputPassword").val() != jquery("#verifpass").val()) {
-alert("Les deux mots de passe saisies sont différents");
+if(jquery("#passwordfirst").val() != jquery("#verifpass").val()) {
+alert("Les 2 mots de passe saisies sont différents");
 
 return false;
 }
 })
+
+
+
 
 
 

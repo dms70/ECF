@@ -13,6 +13,7 @@ scheb_two_factor:
         sender_email: david@marcais.online   # Sender email address
         sender_name: david marcais          # Sender name
         digits: 6                      # Number of digits in authentication code
+        template: security/2fa_form.html.twig
         #template: security/2fa_form.html.twig
 
          # Trusted device feature

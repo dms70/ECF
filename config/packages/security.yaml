@@ -20,8 +20,8 @@ security:
             security: false
 
         main:
-            entry_point: App\Security\AuthenticationEntryPoint
-            access_denied_handler: App\Security\AccessDeniedHandler
+            ##entry_point: App\Security\AuthenticationEntryPoint
+            #access_denied_handler: App\Security\AccessDeniedHandler
             user_checker: App\Security\UserChecker
             lazy: true
             provider: app_user_provider
@@ -34,6 +34,7 @@ security:
                 auth_form_path: 2fa_login    # The route name you have used in the routes.yaml
                 check_path: 2fa_login_check  # The route name you have used in the routes.yaml
                 trusted_parameter_name: _trusted  
+      
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
 
@@ -46,7 +47,8 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-
+        - { path: ^/2fa, role: IS_AUTHENTICATED_2FA_IN_PROGRESS }
+        - { path: ^/logout, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/profil, roles: ROLE_HABITANT}
         - { path: ^/meslivres, roles: ROLE_HABITANT}
         - { path: ^/catalogue, roles: ROLE_HABITANT}
@@ -60,6 +62,11 @@ security:
         - { path: ^/validationbook, roles: ROLE_EMPLOYE }
         - { path: ^/removereservation, roles: ROLE_HABITANT }
         - { path: ^/registered, roles: ROLE_EMPLOYE }
+        
+        
+
+ 
+
         
         
         

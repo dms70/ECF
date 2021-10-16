@@ -56,19 +56,13 @@
         }) }}
 
               <label for="verifpass">Saisir une seconde fois le mot de passe</label>
-              <input type="password" id="verifpass" class="form-control" required>
+              <input type="password" id="verifpass" class="form-control" required><br></br>
+
               
-              <script> 
-                $("#new_edit_utilisateur").on('submit', function(){
-                if($("#passwordfirst").val() != $("#verifpass").val()) {
-                //implémntez votre code
-                alert("Les deux mots de passe saisies sont différents");
-                return false;
-                }
-                })
-              </script> 
-    
-         
+ 
+
+         {{ form_row(registrationForm.captcha) }}
+
         <button type="submit" class="btn btn-lg btn-primary">S'enregistrer</button>
        {{ form_end(registrationForm) }}
                         <!-- Text -->
