@@ -49,8 +49,8 @@ class BookManager extends AbstractController
     public function removereservation(int $isbn): void
     {
 
-        $user = $this->getUser();
-        $userId = $user->getId();
+        //$user = $this->getUser();
+       // $userId = $user->getId();
 
         /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
@@ -59,17 +59,24 @@ class BookManager extends AbstractController
         $book->setReserved(false);
         $book->setBookeddate(NULL);
         $book->setBookeds(NULL);
+
+        $id = $book->GetUser();
+        $userfound = $entityManager->getRepository(User::class)->findOneByid($id);
+
+       //$user ->getUser();
+        $Bookborrowed= $userfound ->getBookborrowed();
+        $Bookborrowed = --$Bookborrowed;
+        $userfound->setBookborrowed($Bookborrowed);
+
         $book->setUser(NULL);
 
-        $Bookborrowed= $user ->getBookborrowed();
-        $Bookborrowed = --$Bookborrowed;
-        $user->setBookborrowed($Bookborrowed);
+        //$user = $this->getUser();
         
         $entityManager->persist($book);
-        $entityManager->persist($user);
-
+        $entityManager->persist($userfound);
+    
         $entityManager->flush();
-        //dump($isbn);
+       
 
     }
 
@@ -87,17 +94,19 @@ class BookManager extends AbstractController
 
 
         $id = $book->GetUser();
-        $User = $entityManager->getRepository(User::class)->findOneByid($id);
+        $userfound = $entityManager->getRepository(User::class)->findOneByid($id);
         
-        $user = $this->getUser();
-        $Bookborrowed= $user ->getBookborrowed();
+        //$user ->getUser();
+        $Bookborrowed= $userfound ->getBookborrowed();
         $Bookborrowed = --$Bookborrowed;
-        $user->setBookborrowed($Bookborrowed);
+        $userfound->setBookborrowed($Bookborrowed);
 
         $book->setUser(NULL);
-        $user = $this->getUser();
+
+        //$user = $this->getUser();
         
         $entityManager->persist($book);
+        $entityManager->persist($userfound);
     
         $entityManager->flush();
         //dump($isbn);

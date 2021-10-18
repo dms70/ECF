@@ -112,7 +112,10 @@ class AppFixtures extends Fixture
                 ->setAuthor($faker->firstname())
                 ->Setcopy(1)
                 ->setISBN($faker->isbn13)
-                ->setImage($faker->image($dir = 'C:\xampp\apps\david\ECF\public\uploads\couverture', $width = 640, $height = 480))
+                #windows
+                #->setImage($faker->image($dir = 'C:\xampp\apps\david\ECF\public\uploads\couverture', $width = 640, $height = 480))
+                #linux
+                ->setImage($faker->image($dir = '/opt/lampp/htdocs/ECF/public/uploads/couverture', $width = 640, $height = 480))
                 ->setCategories($Category)
                 ->setGenre($valuegenre[$l]);
             
