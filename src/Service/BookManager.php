@@ -55,7 +55,7 @@ class BookManager extends AbstractController
         /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $book = $entityManager->getRepository(Book::class)->findOneByisbn($isbn);
-        dump($book);
+      
         $book->setReserved(false);
         $book->setBookeddate(NULL);
         $book->setBookeds(NULL);
@@ -87,7 +87,7 @@ class BookManager extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $book = $entityManager->getRepository(Book::class)->findOneByisbn($isbn);
 
-        dump($book);
+    
         $book->setBorrowed(false);
         $book->setBookeddate(NULL);
         $book->setBookeds(NULL);
@@ -109,7 +109,7 @@ class BookManager extends AbstractController
         $entityManager->persist($userfound);
     
         $entityManager->flush();
-        //dump($isbn);
+      
 
     }
 
@@ -123,7 +123,7 @@ class BookManager extends AbstractController
         /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $book = $entityManager->getRepository(Book::class)->findOneByisbn($isbn);
-        //dump($book);
+
         $book->setReserved(true);
         $date = new \DateTime('@'.strtotime('now'));
         $book->setBookeddate ($date);
@@ -141,8 +141,7 @@ class BookManager extends AbstractController
         $entityManager->persist($user);
     
         $entityManager->flush();
-        dump($isbn);
-
+ 
     }
 
 
@@ -155,7 +154,7 @@ class BookManager extends AbstractController
         /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $book = $entityManager->getRepository(Book::class)->findOneByisbn($isbn);
-        dump($book);
+      
         $book->setReserved(false);
         $book->setBorrowed(true);
         $date = new \DateTime('@'.strtotime('now'));
@@ -163,7 +162,7 @@ class BookManager extends AbstractController
         $entityManager->persist($book);
     
         $entityManager->flush();
-        dump($isbn);
+     
 
     }
 

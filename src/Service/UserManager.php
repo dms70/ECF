@@ -14,11 +14,11 @@ class UserManager extends AbstractController
     {
 
         $email = $data['Recherche'];
-        dump($data);
+
         /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $user = $entityManager->getRepository(User::class)->findOneByemail($email);
-        dump($email);
+   
         /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository(User::class);
@@ -32,11 +32,11 @@ class UserManager extends AbstractController
     {
 
         $email = $data['Recherche'];
-        dump($data);
+
         /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $user = $entityManager->getRepository(User::class)->findOneByemail($email);
-        dump($email);
+
         /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository(User::class);

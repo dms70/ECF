@@ -31,14 +31,28 @@ class AppFixtures extends Fixture
     
         $user = new User();
 
-        $user->setEmail('david@marcais.online')
-            ->setFirstname('david')
+        $user->setEmail('contact@davidmarcais.fr')
+            ->setFirstname('contact')
             ->setLastname('marcais')
             ->setAdress($faker->address())
             ->setRoles(["ROLE_ADMIN","ROLE_EMPLOYE","ROLE_HABITANT"])
             ->setBirthdate($faker->dateTimeBetween('-40 years','now', ))
             ->setIsVerified(true);
-            $password = $this->passwordEncoder->HashPassword( $user, 'password' );
+            $password = $this->passwordEncoder->HashPassword( $user, 'passw0rd' );
+            $user->setPassword($password);
+    
+            $manager-> persist($user);
+    
+            $manager->flush();
+
+        $user->setEmail('ecf@davidmarcais.fr')
+            ->setFirstname('ecf')
+            ->setLastname('marcais')
+            ->setAdress($faker->address())
+            ->setRoles(["ROLE_ADMIN","ROLE_EMPLOYE","ROLE_HABITANT"])
+            ->setBirthdate($faker->dateTimeBetween('-40 years','now', ))
+            ->setIsVerified(true);
+            $password = $this->passwordEncoder->HashPassword( $user, 'Passw0rd' );
             $user->setPassword($password);
     
             $manager-> persist($user);
@@ -47,7 +61,7 @@ class AppFixtures extends Fixture
 
         for ($i=0; $i<10; $i++) 
             { $user = new User();
-            $user->setEmail($i.'habitant@marcais.online')
+            $user->setEmail($i.'habitant@davidmarcais.fr')
             ->setFirstname($faker->firstname())
             ->setLastname($faker->lastname())
             ->setAdress($faker->address())
@@ -67,7 +81,7 @@ class AppFixtures extends Fixture
 
             for ($i=0; $i<5; $i++) 
             { $user = new User();
-            $user->setEmail($i.'employe@marcais.online')
+            $user->setEmail($i.'employe@davidmarcais.fr')
             ->setFirstname($faker->firstname())
             ->setLastname($faker->lastname())
             ->setAdress($faker->address())

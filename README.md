@@ -15,6 +15,7 @@ telechragement de Symfony CLI
 # installation de symfony cli
 
 wget https://get.symfony.com/cli/installer -O - | bash 
+
 # installation des composants
 
 composer install --no-dev --optimize-autoloader

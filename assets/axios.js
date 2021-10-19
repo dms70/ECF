@@ -1,5 +1,4 @@
 const axios = require('axios').default;
-import jquery from 'jquery';
 
 function onclickremove(event){
 
@@ -9,18 +8,14 @@ const url = this.href;
 
 axios.get(url).then(function(response) {
 
-    //console.log(response);
-
     })
 }
-
 
 document.querySelectorAll('a.js-cancelbook').forEach(function(link){
 
 link.addEventListener('click', onclickremove);
 
 });
-
 
 function oncheckedremove(event){
 
@@ -50,12 +45,12 @@ function oncheckedremove(event){
     
     }
     
-
 document.querySelectorAll('a.js-checked').forEach(function(link){
 
     link.addEventListener('click', oncheckedremove);
     
     });
+
 
 
 

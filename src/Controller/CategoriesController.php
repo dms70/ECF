@@ -14,7 +14,8 @@ use App\Service\BookManager;
 class CategoriesController extends AbstractController
 {
     #[Route('/categories', name: 'categories')]
-    public function categories(PaginatorInterface $paginator, request $request,BookRepository $BookRepository): Response
+    public function categories(PaginatorInterface $paginator,
+     request $request,BookRepository $BookRepository): Response
     {
 
         $data =  $BookRepository->findall();
@@ -31,7 +32,8 @@ class CategoriesController extends AbstractController
 
 
     #[Route('/categoriesRomans', name: 'categoriesRomans')]
-    public function categoriesRomans(PaginatorInterface $paginator, request $request,BookRepository $BookRepository,BookManager $BookManager): Response
+    public function categoriesRomans(PaginatorInterface $paginator, request $request,
+    BookRepository $BookRepository,BookManager $BookManager): Response
     {
        
 
@@ -81,7 +83,8 @@ class CategoriesController extends AbstractController
 
 
     #[Route('/categoriesBD', name: 'categoriesBD')]
-    public function categoriesBD(PaginatorInterface $paginator, request $request,BookRepository $BookRepository,BookManager $BookManager): Response
+    public function categoriesBD(PaginatorInterface $paginator, request $request,BookRepository 
+    $BookRepository,BookManager $BookManager): Response
     {
        
 
@@ -126,7 +129,8 @@ class CategoriesController extends AbstractController
        
     }
     #[Route('/categoriesEnfants', name: 'categoriesEnfants')]
-    public function categoriesEnfants(PaginatorInterface $paginator, request $request,BookRepository $BookRepository,BookManager $BookManager): Response
+    public function categoriesEnfants(PaginatorInterface $paginator, 
+    request $request,BookRepository $BookRepository,BookManager $BookManager): Response
     {
        
 
@@ -172,7 +176,8 @@ class CategoriesController extends AbstractController
     }
     
     #[Route('/categoriesDocumentaires', name: 'categoriesDocumentaires')]
-    public function categoriesDocumentaires(PaginatorInterface $paginator, request $request,BookRepository $BookRepository,BookManager $BookManager): Response
+    public function categoriesDocumentaires(PaginatorInterface $paginator, 
+    request $request,BookRepository $BookRepository,BookManager $BookManager): Response
     {
        
 

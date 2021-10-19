@@ -30,6 +30,23 @@
               </a>
               <div class="dropdown-menu dropdown-menu-md" aria-labelledby="navbarDocumentation">
                 <div class="list-group list-group-flush">
+                  <a class="list-group-item" href="{{ path('profil') }}">
+    
+                    <!-- Icon -->
+                    <div class="icon icon-sm text-primary">
+                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <img src="/img/identity.png" width="40" height="40">   
+                      </svg>                
+                    </div>
+    
+                    <!-- Content -->
+                    <div class="ms-4">
+                      <!-- Heading -->
+                      <h6 class="fw-bold text-uppercase text-primary mb-0">
+                        Identité
+                      </h6>
+                    </div>
+                  </a>
                   <a class="list-group-item" href="{{ path('changepassword') }}">
     
                     <!-- Icon -->
@@ -41,32 +58,71 @@
     
                     <!-- Content -->
                     <div class="ms-4">
-    
                       <!-- Heading -->
                       <h6 class="fw-bold text-uppercase text-primary mb-0">
-                        parametre
+                        Mot de passe
                       </h6>
                     </div>
                   </a>
-
-
-      
-
+                  
+                </div>
+              </div>
+            <li class="nav-item dropdown">
 
 
 
             <li class="nav-item dropdown">
               <a class="nav-link " id="navbarAccount"  href="{{ path('mes_livres') }}" aria-haspopup="true" aria-expanded="false">
                 Mes Livres
-              </a>              
+              </a>   
+              <div class="dropdown-menu dropdown-menu-md" aria-labelledby="navbarDocumentation">
+                <div class="list-group list-group-flush">
+                  <a class="list-group-item" href="{{ path('mes_livres') }}">
+    
+                    <!-- Icon -->
+                    <div class="icon icon-sm text-primary">
+                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <img src="/img/liste.png" width="40" height="40">   
+                      </svg>                
+                    </div>
+    
+                    <!-- Content -->
+                    <div class="ms-4">
+                      <!-- Heading -->
+                      <h6 class="fw-bold text-uppercase text-primary mb-0">
+                        LISTE
+                      </h6>
+                    </div>
+                  </a>
+                  
+                </div>
+              </div>           
             </li>
 
             <li class="nav-item dropdown">
               <a class="nav-link" id="navbarDocumentation"  href="{{ path('catalogue') }}" aria-haspopup="true" aria-expanded="false">
-                Catalogue
+                Rayons
               </a>
               <div class="dropdown-menu dropdown-menu-md" aria-labelledby="navbarDocumentation">
                 <div class="list-group list-group-flush">
+                  <a class="list-group-item" href="{{ path('catalogue') }}">
+    
+                    <!-- Icon -->
+                    <div class="icon icon-sm text-primary">
+                      <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <img src="/img/catalogue.png" width="40" height="40">   
+                      </svg>                
+                    </div>
+    
+                    <!-- Content -->
+                    <div class="ms-4">
+    
+                      <!-- Heading -->
+                      <h6 class="fw-bold text-uppercase text-primary mb-0">
+                        catalogue
+                      </h6>
+                    </div>
+                  </a>
                   <a class="list-group-item" href="{{ path('categoriesRomans') }}">
     
                     <!-- Icon -->
