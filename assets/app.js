@@ -21,5 +21,8 @@ import './axios';
 
 import './password';
 
+import './validationpop';
+
+
 
 
