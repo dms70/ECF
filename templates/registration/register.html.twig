@@ -52,10 +52,10 @@
         {{ form_row(registrationForm.adress) }}
         {{ form_row(registrationForm.email, {'attr': {'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
         {{ form_row(registrationForm.plainPassword, {
-            label: 'Password', id:'passwordfirst'
+            label: 'Mot de passe *', id:'passwordfirst'
         }) }}
 
-              <label for="verifpass">Saisir une seconde fois le mot de passe</label>
+              <label for="verifpass">Confirmez le Mot de passe *</label>
               <input type="password" id="verifpass" class="form-control" required><br></br>
 
               
@@ -68,6 +68,9 @@
                         <!-- Text -->
             <p class="mb-0 fs-sm text-center text-muted">
               Vous avez déja un compte enregistré? <a href="login">Connexion</a>.
+            </p>
+            <p class="mb-0 fs-sm text-center text-muted">
+              * champ obligatoire.
             </p>
 
 

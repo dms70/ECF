@@ -29,10 +29,10 @@ class AppFixtures extends Fixture
         $faker = Factory::create('fr_FR');
         $faker->addProvider(new \Smknstd\FakerPicsumImages\FakerPicsumImagesProvider($faker));
     
-        $user = new User();
+            $user = new User();
 
-        $user->setEmail('contact@davidmarcais.fr')
-            ->setFirstname('contact')
+            $user->setEmail('admin@davidmarcais.fr')
+            ->setFirstname('admin')
             ->setLastname('marcais')
             ->setAdress($faker->address())
             ->setRoles(["ROLE_ADMIN","ROLE_EMPLOYE","ROLE_HABITANT"])
@@ -45,17 +45,35 @@ class AppFixtures extends Fixture
     
             $manager->flush();
 
-        $user->setEmail('ecf@davidmarcais.fr')
+            $user2 = new User();
+
+            $user2->setEmail('contact@davidmarcais.fr')
+            ->setFirstname('contact')
+            ->setLastname('marcais')
+            ->setAdress($faker->address())
+            ->setRoles(["ROLE_ADMIN","ROLE_EMPLOYE","ROLE_HABITANT"])
+            ->setBirthdate($faker->dateTimeBetween('-40 years','now', ))
+            ->setIsVerified(true);
+            $password = $this->passwordEncoder->HashPassword( $user, 'passw0rd' );
+            $user2->setPassword($password);
+    
+            $manager-> persist($user2);
+    
+            $manager->flush();
+
+            $user3 = new User();
+
+            $user3->setEmail('ecf@davidmarcais.fr')
             ->setFirstname('ecf')
             ->setLastname('marcais')
             ->setAdress($faker->address())
             ->setRoles(["ROLE_ADMIN","ROLE_EMPLOYE","ROLE_HABITANT"])
             ->setBirthdate($faker->dateTimeBetween('-40 years','now', ))
             ->setIsVerified(true);
-            $password = $this->passwordEncoder->HashPassword( $user, 'Passw0rd' );
-            $user->setPassword($password);
+            $password = $this->passwordEncoder->HashPassword( $user3, 'Passw0rd' );
+            $user3->setPassword($password);
     
-            $manager-> persist($user);
+            $manager-> persist($user3);
     
             $manager->flush();
 
@@ -117,7 +135,7 @@ class AppFixtures extends Fixture
                 $book = [];
                 $book = new Book();
 
-                $valuegenre= ['SCIENCE-FICTION','FANTASTIQUE','THILLER','HORREUR','NATURE','MUSIQUE','HISTOIRE'];
+                $valuecatgenre= ['SCIENCE-FICTION','FANTASTIQUE','THILLER','HORREUR','NATURE','MUSIQUE','HISTOIRE'];
                 $l = rand(0,6);
           
                 $book->setTitle($faker->word(8))
@@ -131,7 +149,7 @@ class AppFixtures extends Fixture
                 #linux
                 ->setImage($faker->image($dir = '/opt/lampp/htdocs/ECF/public/uploads/couverture', $width = 640, $height = 480))
                 ->setCategories($Category)
-                ->setGenre($valuegenre[$l]);
+                ->setGenre($valuecatgenre[$l]);
             
              
     
@@ -154,10 +172,10 @@ class AppFixtures extends Fixture
 
             $valuegenre= ['SCIENCE-FICTION','FANTASTIQUE','THILLER','HORREUR','NATURE','MUSIQUE','HISTOIRE'];
 
-            for ($i=1; $i<= count($value); $i++)
+            for ($i=1; $i<= count($valuegenre); $i++)
             {$Genre = [];
             $Genre = new Genre();
-            $Genre->setGenrename($value[$i-1]);
+            $Genre->setGenrename($valuegenre[$i-1]);
 
             $manager-> persist($Genre);
 

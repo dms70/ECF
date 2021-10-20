@@ -32,7 +32,7 @@ class ValidationReserverdBookController extends AbstractController
             $UserManager->searchemail($data);
             $email = $data['Recherche'];
         }     
-
+        /** @var ActivityRepository */
         $entityManager = $this->getDoctrine()->getManager();
         $repository = $entityManager->getRepository(User::class);
        

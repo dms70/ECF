@@ -17,7 +17,7 @@ class Book
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer",type="bigint", length=100)
      */
     private $id;
 
