@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
@@ -43,13 +44,24 @@ public static function getEntityFqcn(): string
             IntegerField::new('copy'),
             IntegerField::new('isbn'),
             AssociationField::new('categories'),
-            TextField::new('genre'),
+
+
+            ChoiceField::new('genre', 'genre')
+                    ->autocomplete()
+                    ->setChoices([  'SCIENCE-FICTION' => 'SCIENCE-FICTION',
+                                    'FANTASTIQUE' => 'FANTASTIQUE',
+                                    'THILLER' => 'THILLER',
+                                    'HORREUR' => 'HORREUR',
+                                    'NATURE' => 'NATURE',
+                                    'MUSIQUE' => 'MUSIQUE',
+                                    'HISTOIRE' => 'HISTOIRE',
+                                    ]
+                                )
              
         
             
         ];
     }
  
-
 
 }

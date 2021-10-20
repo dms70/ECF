@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -29,7 +30,14 @@ class UserCrudController extends AbstractCrudController
         return [
             
             TextField::new('email', null),
-            ArrayField::new('roles', null),
+    
+            ChoiceField::new('roles', 'Roles')
+                    ->allowMultipleChoices()
+                    ->autocomplete()
+                    ->setChoices([ 
+                                    'habitant' => 'ROLE_HABITANT',
+                                    ]
+        ),
             TextField::new('password', null),
             BooleanField::new('is_verified', null),
             TextField::new('firstname'),
