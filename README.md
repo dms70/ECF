@@ -109,14 +109,14 @@ php -S localhost:8000 -t public
 
 # lancement de l'application web 
 
-http:\\localhost:8000
+http:\\\localhost:8000
 # lancement de l'interface superadmin pour ajouter des employes et ou des utlisateurs
 
-http:\\localhost:8000\superadmin
+http:\\\localhost:8000\superadmin
 
 # lancement de l'interface superadmin pour ajouter des livres
 
-http:\\localhost:8000\admin
+http:\\\localhost:8000\admin
 
 # test de remplissage de la base de donnees 
 Editer le fichier Appfixtures.php
