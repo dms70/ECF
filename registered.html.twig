@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RegisteredController!{% endblock %}
+
+{% block body %}
+
+       <div class="row align-items-center justify-content-center">
+       <span class="badge bg-primary-soft"> Date du jour : {{ "now"|date("d-m-Y") }}</span>         
+       <span class="badge bg-primary-soft"> gestion des inscriptions </span>     
+      </div>
+
+
+<!-- SEARCH -->
+    <section class="py-6">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+
+ <div class="col-6 col-md-6 d-flex"><div class="card mb-6 shadow-light-lg lift lift-lg"></div></div>            
+
+
+       <div class="row" id="portfolio" data-isotope='{"layoutMode": "fitRows"}'>
+          <div class="col-12 col-md-4 product">
+            
+        </div> 
+      </div>
+            
+            {% for AllUsers in AllUsers %}
+                <!-- List group -->
+      
+                  <div class="list-group-item">
+                    <div class="row align-items-center">
+                      
+                      <div class="col-6 ms-n5">
+
+                        <!-- Heading -->
+                        <p class="mb-0">
+                          ID utilisateur : {{AllUsers.id}}
+                        </p>
+
+                        <!-- Books -->
+                        <p class="mb-0">
+                         Email : {{AllUsers.email}} 
+                        </p>
+
+                        <!-- Books -->
+                        <p class="mb-0">
+                         Nom : {{AllUsers.firstname}} 
+                        </p>
+
+                        <!-- Books -->
+                        <p class="mb-0">
+                         Nom : {{AllUsers.lastname}} 
+                        </p>
+
+                        <!-- Books -->
+                        <p class="mb-0">
+                         Nom : {{AllUsers.adress}} 
+                        </p>
+
+                        <!-- Books -->
+                        <p class="mb-0">
+                         Nom : {{AllUsers.birthdate|date('d-m-Y')}} 
+                        </p>
+
+                        <!-- Books -->
+                        <p class="mb-0">
+                         Livres empruntes : {{AllUsers.bookborrowed}}
+
+
+                      </div>   
+
+                        <div class="col-auto ms-auto">
+
+                      {% if AllUsers.IsVerified == 1 %}
+                       <a class="js-checked mb-0 mb-1 btn w-100 btn btn-warning text-dark" href="{{ path ('changestatusregistered', {'id' : AllUsers.id})}}"> 
+                       <span class='valide'>valide</span>
+                       </a>
+                      {% endif %} 
+                      {% if AllUsers.IsVerified == 0 %}
+                       <a class="js-checked mb-0 mb-1 btn w-100 btn btn btn-warning text-dark" href="{{ path ('changestatusregistered', {'id' : AllUsers.id})}}"> 
+                         <span class='invalide'>invalide</span>
+                       </a>
+                      {% endif %} 
+
+
+
+
+
+                      </div>  
+
+                    </div>
+                  </div>
+               
+          
+            {% endfor %}
+
+          </div>     
+        </div> <!-- / .row -->
+      </div>
+
+<div class="col-6 col-md-6 d-flex"><div class="card mb-6 shadow-light-lg lift lift-lg"></div></div>    
+<div class="col-6 col-md-6 d-flex"><div class="card mb-6 shadow-light-lg lift lift-lg"></div></div>    
+<div class="col-6 col-md-6 d-flex"><div class="card mb-6 shadow-light-lg lift lift-lg"></div></div>    
+<div class="col-6 col-md-6 d-flex"><div class="card mb-6 shadow-light-lg lift lift-lg"></div></div>    
+
+
+{% endblock %}

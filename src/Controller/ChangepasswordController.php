@@ -8,12 +8,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 class ChangepasswordController extends AbstractController
 {
     #[Route('/changepassword', name: 'changepassword')]
-    public function index(Request $request, UserPasswordEncoderInterface $passwordEncoder, string $token = null): Response
+    public function index(Request $request, UserPasswordHasherInterface $passwordHasher, string $token = null): Response
     {
 
         $user = $this->getUser();
@@ -26,7 +27,7 @@ class ChangepasswordController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
             $user->setPassword(
-                $passwordEncoder->encodePassword(
+                $passwordHasher->hashPassword(
                     $user,
                     $form->get('plainPassword')->getData()
                 )

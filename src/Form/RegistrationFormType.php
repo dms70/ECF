@@ -78,6 +78,7 @@ class RegistrationFormType extends AbstractType
 
                 
                 ->add('birthdate', BirthdayType::class, [
+                    'widget' => 'single_text',
                     'placeholder' => [
                         'day' => 'Jour', 'month' => 'Mois',  'year' => 'Annee'
                     ],
@@ -111,8 +112,8 @@ class RegistrationFormType extends AbstractType
                 'invalid_message' => 'Le mot de passe doit correspondre',
                 'options' => ['attr' => ['class' => 'password-field']],
                 'required' => true,
-                'first_options'  => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Répeter le Mot de passe'],
+                'first_options'  => ['label' => 'Mot de passe *'],
+                'second_options' => ['label' => 'Répeter le Mot de passe *'],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer un mot de passe *',
