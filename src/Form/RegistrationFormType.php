@@ -94,7 +94,7 @@ class RegistrationFormType extends AbstractType
                     )
                 ->add('email', null, [
                     'help' => 'Format : monadresse@fournisseur.fr',
-                    'label' => 'email *'
+                    'label' => 'email *',
                 ])
 
             
