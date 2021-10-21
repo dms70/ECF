@@ -1,6 +1,6 @@
 # ECF DAVID MARCAIS 2021 
 
-# REALISATION D'UNE APLLCATION DE GESTION D'UNE MEDIATHEQUE
+# REALISATION D'UNE APPLICATION DE GESTION D'UNE MEDIATHEQUE
 # PROJET DANS POUR LA CERTIFICATION DU TITRE RNCP WEB DEVELOPPEUR FULL STACK
 
 # DOCUMENTATIONS DISPONIBLE
@@ -11,16 +11,16 @@ chartre graphique_wireframme.pdf
 Bienvenue sur le site de la mediatheque.pdf (manuel utilisation)
 
 # SCRIPTS DISPONIBLE
-getfilename.php
-relance3semaines.php
-reservation3days.php
-crud_insert.sql
-crud_delete.sql
+getfilename.php  
+relance3semaines.php  
+reservation3days.php  
+crud_insert.sql  
+crud_delete.sql  
 
 # TESTS UNITAIRE
-crud_insert.sql
-reservation3days.php
-crud_delete.sql
+crud_insert.sql  
+reservation3days.php   
+crud_delete.sql  
 
 
 # SPECIFICATION TECHNIQUE DU PROJET
@@ -37,21 +37,21 @@ JAVASCRIPT
 
 BACK
 
-SYMFONY : 5.3.9
-Version de PHP : 8.0.10
-Version du serveur : 10.4.21-MariaDB 
-Version du client de base de données : libmysql - mysqlnd 8.0.10
+SYMFONY : 5.3.9  
+Version de PHP : 8.0.10   
+Version du serveur : 10.4.21-MariaDB    
+Version du client de base de données : libmysql - mysqlnd 8.0.10   
 
 
 # indispensable  
 
-telechargement lampp ou xampp (PHP 8 & Base de données mysql)
+telechargement lampp ou xampp (PHP 8 & Base de données mysql)  
 
-telechargement de Composer
+telechargement de Composer  
 
-telechargement de npm
+telechargement de npm  
 
-telechargement de Symfony CLI
+telechargement de Symfony CLI  
 
 
 # installation de symfony cli
