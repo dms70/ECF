@@ -58,9 +58,6 @@ telechargement de Symfony CLI
 
 wget https://get.symfony.com/cli/installer -O - | bash 
 
-# installation des composants
-
-composer install 
 
 # verification 
 
@@ -70,11 +67,15 @@ symfony check:requirements
 
 git clone https://github.com/dms70/ECF.git
 
-# Mise a jour du fichier env.local avec les variables
-# .env.local
+# installation des composants
 
-DATABASE_URL="mysql://symfony_user:root:3306/mediatheque"
-ad your own user,password, smtpserver, password from your smtp server 
+composer install 
+
+# Mise a jour du fichier env.local avec les variables
+remplacer le champ user , le champ password et le port
+DATABASE_URL="mysql://user:password@127.0.0.1:port/mediatheque"
+
+remplacer le champ user , le champ password, smtpserver et son port
 MAILER_DSN=smtp://user:password@smtpserver:port 
 
 
@@ -82,13 +83,12 @@ MAILER_DSN=smtp://user:password@smtpserver:port
 
 php bin/console doctrine:fixtures:load
 
-# Modfication du chap image dans book pour enlever le path et garder le nom du fichier
+# Modfication du champ image dans book pour enlever le path et garder le nom du fichier
 
 php getfilename.php
 
-# mise en production
-
-# ajout des variables en mode production dans le env.local
+# mise en production : 
+Modifier les variables dans le fichier env: 
 APP_ENV=prod
 APP_DEBUG=0
 
