@@ -116,7 +116,7 @@ class RegistrationFormType extends AbstractType
                 'second_options' => ['label' => 'Répeter le Mot de passe *'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez entrer un mot de passe *',
+                        'message' => 'Veuillez entrer un mot de passe de 8 caractéres minimum*',
                     ]),
                     new Length([
                         'min' => 8,
