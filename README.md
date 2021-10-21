@@ -54,10 +54,10 @@ telechargement de npm
 telechargement de Symfony CLI  
 
 
-# installation de symfony cli
-
+# installation de symfony cli sous linux
 wget https://get.symfony.com/cli/installer -O - | bash 
-
+# installation de symfony cli sous windows
+https://symfony.com/download
 
 # verification 
 
@@ -68,8 +68,8 @@ symfony check:requirements
 git clone https://github.com/dms70/ECF.git
 
 # installation des composants
-
 composer install 
+yarn install
 
 # Mise a jour du fichier env.local avec les variables
 remplacer le champ user , le champ password et le port
@@ -79,32 +79,25 @@ remplacer le champ user , le champ password, smtpserver et son port
 MAILER_DSN=smtp://user:password@smtpserver:port 
 
 
-# remplissage de la base de donnees 
 
-php bin/console doctrine:fixtures:load
+# creation de la base de données
+symfony console doctrine:database:create
+
+# creation des entites dans la base mysql
+
+symfony console doctrine:schema:update --force
+
+# remplissage de la base de donnees 
+Editer le fichier Appfixtures.php
+modifier setImage et choisir le path suivant votre systeme linux ou windows
+symfony console doctrine:fixtures:load
 
 # Modfication du champ image dans book pour enlever le path et garder le nom du fichier
 
 php getfilename.php
 
-# mise en production : 
-Modifier les variables dans le fichier env: 
-APP_ENV=prod
-APP_DEBUG=0
-
-# reinit du cache
-php bin/console cache:clear
-
-# creation de la base de données
-
-php bin/console doctrine:database:create
-
-# creation des entites dans la base mysql
-
-php bin/console doctrine:schema:update --force
-
 # faire un hash de votre mot de passe
-php bin/console  security:hash-password
+symfony console  security:hash-password
 # creation d'un user admin (solution 1)
 modifier le script createuser.sql
 remplacer superadmin@myorganisation avec votre adresse email
@@ -115,12 +108,23 @@ lancer le script createuser.sql avec la commandde mysql -u user -p password < cr
 Editer le fichier Appfixtures.php, modifier le champ admin@davidmarcais.fr avec votre email
 et modifier le champ mot de passe associé.
 
+# build the scipts js
+yarn build 
 # start server symfony
 
 php -S localhost:8000 -t public
 
 # first connection with admin
 change password with interface
+
+# pour une mise en production : 
+Modifier les variables dans le fichier env: 
+APP_ENV=prod
+APP_DEBUG=0
+# reinit du cache
+symfony console cache:clear
+# restart server
+php -S localhost:8000 -t public
 
 
 
