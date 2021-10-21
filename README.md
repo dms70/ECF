@@ -103,6 +103,18 @@ php bin/console doctrine:database:create
 
 php bin/console doctrine:schema:update --force
 
+# faire un hash de votre mot de passe
+php bin/console  security:hash-password
+# creation d'un user admin (solution 1)
+modifier le script createuser.sql
+remplacer superadmin@myorganisation avec votre adresse email
+remplacer Mypassword avec le votre (faire un hash recuperer avec la commande security:hash-password)
+lancer le script createuser.sql avec la commandde mysql -u user -p password < createuser.sql
+
+# creation d'un user admin (solution 2)
+Editer le fichier Appfixtures.php, modifier le champ admin@davidmarcais.fr avec votre email
+et modifier le champ mot de passe associé.
+
 # start server symfony
 
 php -S localhost:8000 -t public
