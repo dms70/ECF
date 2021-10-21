@@ -4,6 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
+
         <title>{% block title %}Welcome!{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
@@ -27,8 +29,10 @@
  <body>
 
 
+
     <!-- CONTENT -->
     <section>
+    
       <div class="container d-flex flex-column">
         <div class="row align-items-center justify-content-center gx-0 min-vh-50">
           <div class="col-12 col-md-6 col-lg-4 py-8 py-md-11">
@@ -51,19 +55,11 @@
         {{ form_row(registrationForm.birthdate) }}
         {{ form_row(registrationForm.adress) }}
         {{ form_row(registrationForm.email, {'attr': {'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,63}$'}}) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Mot de passe *', id:'passwordfirst'
-        }) }}
+        {{ form_row(registrationForm.password.first, {id:'passwordfirst'}) }}
+        {{ form_row(registrationForm.password.second, {id:'passwordsecond'}) }}
+        {{ form_row(registrationForm.captcha) }}
 
-              <label for="verifpass">Confirmez le Mot de passe *</label>
-              <input type="password" id="verifpass" class="form-control" required><br></br>
-
-              
- 
-
-         {{ form_row(registrationForm.captcha) }}
-
-        <button id="new_user_registration" type="submit" class="btn btn-lg btn-primary">S'enregistrer</button>
+        <button id="MyBtn" type="submit" class="btn btn-lg btn-primary">S'enregistrer</button>
            {{ form_end(registrationForm) }}
                         <!-- Text -->
             <p class="mb-0 fs-sm text-center text-muted">
@@ -74,6 +70,8 @@
             </p>
 
           </div>
+
+
           <div class="col-lg-7 offset-lg-1 align-self-stretch d-none d-lg-block" data-aos="fade-left">
 
             <!-- Image -->
@@ -87,6 +85,7 @@
         </div> <!-- / .row -->
       </div> <!-- / .container -->
     </section>
+
 
 </body>
 </html>
