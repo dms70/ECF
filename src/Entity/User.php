@@ -45,9 +45,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
      * @var string The hashed password
      * @ORM\Column(type="string")
      * @Assert\Regex(
-    * pattern = "/^(?=.*\d)(?=.*[A-Z])(?=.*[@#$%])(?!.*(.)\1{2}).*[a-z]/m",
-    * match=true,
-    * message="Votre mot de passe doit comporter au moins huit caractères, dont des lettres majuscules et minuscules, un chiffre et un symbole.")
+     * pattern = "/^(?=.*\d)(?=.*[A-Z])(?=.*[@#$%])(?!.*(.)\1{2}).*[a-z]/m",
+     * match=true,
+     * message="Votre mot de passe doit comporter au moins huit caractères, dont des lettres majuscules et minuscules, un chiffre et un symbole.")
      */
     private $password;
 
@@ -58,11 +58,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(
+     * pattern = "/^[a-zA-Z0-9_-]{2,20}$/",
+     * match=true,
+     * message="votre nom doit comporter entre 2 et 50 caractères, lettres et chiffres uniquement")
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(
+     * pattern = "/^[a-zA-Z0-9_-]{2,20}$/",
+     * match=true,
+     * message="votre prenom doit comporter entre 2 et 50 caractères, lettres et chiffres uniquement")
      */
     private $lastname;
 
@@ -73,6 +81,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex(
+     * pattern = "/^[a-zA-Z0-9_-]{2,255}$/",
+     * match=true,
+     * message="votre adresse doit comporter entre 2 et 255 caractères, lettres et chiffres uniquement")
      */
     private $adress;
 
