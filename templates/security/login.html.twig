@@ -63,11 +63,9 @@
               <label for="inputEmail">Email</label>
               <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
 
-              <label for="inputPassword"  id="passwordfirst" >Mot de passe</label>
-              <input type="password" name="password" id="passwordfirst" class="form-control" required>
-              <label for="verifpass" id="passwordsecond">Confirmer le Mot de passe</label>
-              <input type="password" id="passwordsecond" class="form-control" required>
-              
+              <label for="inputPassword"   >Mot de passe</label>
+              <input type="password" name="password"  class="form-control" required>
+
 
 
               <input type="hidden" name="_csrf_token"value="{{ csrf_token('authenticate') }}">

@@ -21,8 +21,8 @@
           </button>
     
           <!-- Navigation -->
+          {% if app.user %}
           <ul class="navbar-nav ms-auto">
-
 
             <li class="nav-item dropdown">
               <a class="nav-link" id="navbarDocumentation"  href="{{ path('profil') }}" aria-haspopup="true" aria-expanded="false">
@@ -209,10 +209,16 @@
             </li>
 
 
+            
 
+          {% set access = 'false' %}
+           {% for role in app.user.roles %} 
+           {% if  role == 'ROLE_ADMIN' or role == 'ROLE_EMPLOYE' %}
+           {% set access = 'true' %}
+           {% endif %}
+           {% endfor %}
 
-
-
+           {% if  access ==  'true' %}
            <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" id="navbarDocumentation"  href="" aria-haspopup="true" aria-expanded="false">
                 Gestion
@@ -275,13 +281,13 @@
                 </div>
               </div>
             </li>
-
+      {% endif %}
 
 
 
 
           </ul>
-    
+          {% endif %}
           <!-- Button -->
           <a class="navbar-btn btn btn-sm btn-primary lift ms-auto" href="{{ path('app_logout') }}" target="_self">
             Déconnexion

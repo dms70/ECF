@@ -18,12 +18,15 @@
             
               {% if app.user %}
               <div class="display-4 text-white text-center">
-              Vous etes connecté en tant que : {{ app.user.firstname }}
+              Vous êtes connecté en tant que : {{ app.user.firstname }}
               </div>
               {% else %}   
               <a href="login" class="btn btn-primary lift" target="_self">
               CONNEXION<i class="ms-auto"></i>
               </a>
+              <p class="display-5 text-white text-cente">
+              Vous n'avez pas de compte enregistré? <a class="text-white" href="register"><strong>Enregistrer</strong></a>.
+              </p>
               {% endif %}
 
 

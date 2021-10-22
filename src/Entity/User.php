@@ -82,7 +82,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, TwoFact
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Regex(
-     * pattern = "/^[a-zA-Z0-9_-]{2,255}$/",
+     * pattern = "/^[a-z A-Z0-9_-]{2,255}$/",
      * match=true,
      * message="votre adresse doit comporter entre 2 et 255 caractères, lettres et chiffres uniquement")
      */
